@@ -1,4 +1,4 @@
-from functions.basic_functions import mainMenu
+from functions.basic import mainMenu
 
 # App welcome
 print ("Cocktail Reference Application")
@@ -17,13 +17,11 @@ while choice != "E":
         case "2": 
             # Remove an item
             pass
-        
         case "3": 
             # Search for an item
                 # Search by name
                 # Search by reference
             pass
-
         case "4": 
             # View lists
                 # See beers
@@ -35,7 +33,6 @@ while choice != "E":
         case "5":
             # Create mix
             pass
-        
         case "6": 
             # Remove mix
             pass
