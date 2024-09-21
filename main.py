@@ -1,10 +1,14 @@
 from functions.basic import mainMenu
+from functions.stock_function import addItem
+from classes.bar import Bar
 
 # App welcome
 print ("Cocktail Reference Application")
 
 # Load in database
 
+bar = Bar(str.lower(input("Name of your bar: ")))
+print (bar)
 
 # Menu
 choice = ""
@@ -12,8 +16,7 @@ while choice != "E":
     choice = mainMenu()
     match choice:
         case "1": 
-            # Add an item
-            pass
+            addItem(bar)
         case "2": 
             # Remove an item
             pass

@@ -3,12 +3,11 @@
 class Bar:
     def __init__(self, name):
         self.name = name
-        self.stock_space = []
+        self.item_space = []
+    def __str__(self):
+        return self.name
 
-class Beverage:
-    #contructor
-    def __init__ (self, alcohol, cost, subtype):
-        self.alc = alcohol
-        self.cost = cost
-        self.subtype = subtype #vodka, tequila, lager, ale, red, white
+    def add_item_space(self, item_type):
+        self.item_space.append(item_type)
 
+        

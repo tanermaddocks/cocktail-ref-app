@@ -1,7 +1,7 @@
 # Simple independent functions.
 
 def mainMenu():
-    print ("What would you like to do?\n")
+    print ("\nWhat would you like to do?\n")
     print ("1. Add beverage.")
     print ("2. Remove beverage.")
     print ("3. Search for a drink.")
