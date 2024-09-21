@@ -8,7 +8,7 @@ print ("Cocktail Reference Application")
 # Load in database
 
 bar = Bar(str.lower(input("Name of your bar: ")))
-print (bar)
+# print (bar)
 
 # Menu
 choice = ""
@@ -16,7 +16,7 @@ while choice != "E":
     choice = mainMenu()
     match choice:
         case "1": 
-            addItem(bar)
+            print(addItem(bar))
         case "2": 
             # Remove an item
             pass
