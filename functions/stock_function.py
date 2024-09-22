@@ -1,55 +1,53 @@
-from classes.stock import Beverage, Beer, Wine, Spirit
+from classes.stock import Beer, Wine, Spirit
+from functions.basic import capitalFullString
 
-def addItem(bar):
+# Add item
+def addStock(bar):
     #ask for item type being added
-    item_type = str.lower(input("What item do you wish to add (Spirit, Beer, or Wine)? "))#SETOUT
-    #add space in array for new item
-    # item_type = bar.add_item_space(item_entry)
-    #add item info to item
-    if item_type == "beer":
+    item_type = str.lower(input("\nWhat item do you wish to add (Spirit, Beer, or Wine)? "))
+    if item_type == "beer" or "wine" or "spirit":
         #item name
-        name = str.capitalize(input(f"What is the name of the {item_type}? "))
-        #item subtype
-        # subtype = input("What kind of beer is the item (Lager, Ale, Stout)? ")
+        name = capitalFullString(input(f"What is the name of the {item_type}? "))
         #item strength
         alc =  float(input(f"What is the alcohol percentage of {name}? "))
-        #item cost
-        cost = float(input(f"How much does {name} cost for a pint? "))
-        #extra info
-
-        #return complete
-        return print(Beer(name, alc, cost))
-    
-    elif item_type == "wine":
-        #item name
-        name = str.capitalize(input(f"What is the name of the {item_type}? "))
-        #item subtype
-        # subtype = input("What kind of beer is the item (Lager, Ale, Stout)? ")
-        #item strength
-        alc =  float(input(f"What is the alcohol percentage of {name}? "))
-        #item cost
-        cost = float(input(f"How much does {name} cost for a glass? "))
-        #extra info
-
-        #return complete
-        return Wine(name, alc, cost)
-    
-    elif item_type == "spirit":
-        #item name
-        name = str.capitalize(input(f"What is the name of the {item_type}? "))
-        #item subtype
-        # subtype = input("What kind of beer is the item (Lager, Ale, Stout)? ")
-        #item strength
-        alc =  float(input(f"What is the alcohol percentage of {name}? "))
-        #item cost
-        cost = float(input(f"How much does {name} cost for a nip? "))
-        #extra info
-
-        #return complete
-        return Spirit(name, alc, cost)
-    
+        match item_type:
+            #for beer
+            case "beer":
+                #item cost
+                cost = float(input(f"How much does {name} cost for a pint? "))
+                #extra info
+                pass
+                #return complete
+                new_item = Beer(name, alc, cost)
+            #for wine
+            case "wine":
+                #item cost
+                cost = float(input(f"How much does {name} cost for a glass? "))
+                #extra info
+                pass
+                #return complete
+                new_item = Wine(name, alc, cost)
+            #for spirit
+            case "spirit":
+                #item cost
+                cost = float(input(f"How much does {name} cost for a nip? "))
+                #extra info
+                pass
+                #return complete
+                new_item = Spirit(name, alc, cost)
     else:
-        print ("Invalid beverage type, try again.")
-    #return complete
-    pass
+        return print("Invalid item type, try again.")
+    #add item to bar dictionary
+    return bar.add_item(new_item)
 
+# Remove item
+pass
+
+# Search item
+pass
+
+# List items
+def listItem(bar):
+    all_items = bar.get_items()
+    if not all_items: print ("No items in bar.") 
+    for item in all_items: print (item)

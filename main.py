@@ -1,5 +1,5 @@
 from functions.basic import mainMenu
-from functions.stock_function import addItem
+from functions.stock_function import addStock, listItem
 from classes.bar import Bar
 
 # App welcome
@@ -16,10 +16,12 @@ while choice != "E":
     choice = mainMenu()
     match choice:
         case "1": 
-            print(addItem(bar))
+            # Add a stock item
+            addStock(bar)
         case "2": 
-            # Remove an item
-            pass
+            # Create mix
+            pass           
+
         case "3": 
             # Search for an item
                 # Search by name
@@ -27,6 +29,7 @@ while choice != "E":
             pass
         case "4": 
             # View lists
+            listItem(bar)
                 # See beers
                 # See wines
                 # See sprits
@@ -34,10 +37,7 @@ while choice != "E":
                 # See all
             pass
         case "5":
-            # Create mix
-            pass
-        case "6": 
-            # Remove mix
+            # Remove any item
             pass
         case "E":
             # Close application
