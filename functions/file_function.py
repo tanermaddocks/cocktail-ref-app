@@ -20,9 +20,9 @@ def loadFile(bar):
     try:
         with open(f"data/{underscoreBar(bar)}.json", "r") as json_file:
             item_dict = json.load(json_file)
-        for item in item_dict:
+        for bev in item_dict:
             # if item.get("beer"):
-            item = Beer(["name"], ["alc"], ["cost"], ["type"], ["serve"])
-            bar.add_item(item)
+            bev = Beverage(bev["name"]["alc"]["cost"]["type"]["serve"])
+            bar.add_item(bev)
     except FileNotFoundError:
         print ("Bar not on file, beginning new bar list.")
