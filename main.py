@@ -1,14 +1,14 @@
 from functions.basic import mainMenu
 from functions.stock_function import addStock, listItem
-from functions.file_function import saveExit
+from functions.file_function import saveExit, loadFile
 from classes.bar import Bar
 
 # App welcome
 print ("Cocktail Reference Application")
 
 # Load in database
-
 bar = Bar(str.lower(input("Name of your bar: ")))
+loadFile (bar)
 # print (bar)
 
 # Menu

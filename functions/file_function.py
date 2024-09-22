@@ -7,9 +7,9 @@ def saveExit(bar):
     for item in bar.get_items():
         item_json = {
             "name": item.get_item_name(),
-            "type": item.get_item_type(),            
             "alc": item.get_item_alc(),
             "cost": item.get_item_cost(),
+            "type": item.get_item_type(),
             "serve": item.get_item_serve()
         }
         item_dict.append(item_json)
@@ -21,12 +21,8 @@ def loadFile(bar):
         with open(f"data/{underscoreBar(bar)}.json", "r") as json_file:
             item_dict = json.load(json_file)
         for item in item_dict:
-            if item.get_item_type == "beer":
-                name = Beer(item["name"])
-                type = Beer(item["type"])
-                alc =  Beer(item["alc"])
-                cost = Beer(item["cost"])
-                serve = Beer(item["serve"])
+            # if item.get("beer"):
+            item = Beer(["name"], ["alc"], ["cost"], ["type"], ["serve"])
             bar.add_item(item)
     except FileNotFoundError:
         print ("Bar not on file, beginning new bar list.")

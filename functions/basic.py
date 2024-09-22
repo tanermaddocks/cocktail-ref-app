@@ -19,7 +19,7 @@ def capitalFullString(string):
     return string
 
 def standardCalc(alcpercent, vol):
-    standard = round(((alcpercent/100 * vol)/12), 2)
+    standard = round(((alcpercent/100 * vol)/12.5), 2)
     return standard
 
 def underscoreBar (bar_name):
