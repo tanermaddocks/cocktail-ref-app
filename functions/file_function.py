@@ -22,7 +22,7 @@ def loadFile(bar):
             item_dict = json.load(json_file)
         for bev in item_dict:
             # if item.get("beer"):
-            bev = Beverage(bev["name"]["alc"]["cost"]["type"]["serve"])
+            bev = Beverage(bev["name"]["alc"]["cost"]["type"]["serve"]) #FIGURE PROPER SETUP
             bar.add_item(bev)
     except FileNotFoundError:
         print ("Bar not on file, beginning new bar list.")
