@@ -1,0 +1,9 @@
+[
+    {
+        "name": "Toohey's New",
+        "type": "beer",
+        "alc": 1.66,
+        "cost": 11.0,
+        "serve": "pint"
+    }
+]

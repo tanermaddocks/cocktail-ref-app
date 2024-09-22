@@ -17,3 +17,12 @@ def capitalFullString(string):
         str.capitalize(word)
     string = " ".join(string_list)
     return string
+
+def standardCalc(alcpercent, vol):
+    standard = round(((alcpercent/100 * vol)/12), 2)
+    return standard
+
+def underscoreBar (bar_name):
+    bar_name_list = str.split(str(bar_name))
+    bar_name_join = "_".join(bar_name_list)
+    return bar_name_join
