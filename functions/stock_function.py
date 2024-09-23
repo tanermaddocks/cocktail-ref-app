@@ -1,5 +1,6 @@
 from classes.stock import Beer, Wine, Spirit
-from functions.basic import capitalFullString, standardCalc
+from functions.basic import capitalFullString, standardCalc, wrongChoice
+
 
 # Add item
 def addStock(bar):
@@ -9,7 +10,7 @@ def addStock(bar):
         case "beer": pass
         case "wine": pass
         case "spirit": pass
-        case _: return print ("Invalid item type, choose beer, wine or spirit.")
+        case _: return wrongChoice(False)
     #item name
     name = capitalFullString(input(f"What is the name of the {item_type}? "))
     #item strength in percent
@@ -50,6 +51,23 @@ pass
 # List items
 def listItem(bar):
     all_items = bar.get_items()
-    if not all_items: print ("No items in bar.") 
+    if not all_items: print ("No items in bar.")
+    print ("Which items would you like to see?")
+    type = str.lower(input("Choose from beer, wine, spirit, mix or all: "))
+    print()
     for item in all_items: 
-        print (item)
+        match type:
+            case "beer": 
+                if item.get_item_type() == "beer": print(item) 
+            case "wine":
+                if item.get_item_type() == "wine": print(item) 
+            case "spirit":
+                if item.get_item_type() == "spirit": print (item)
+            case "mix": 
+                pass
+            case "all": 
+                print(item)
+            case _: 
+                wrongChoice(True)
+        
+    

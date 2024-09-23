@@ -1,5 +1,5 @@
 import json
-from classes.stock import Beverage, Beer, Wine, Spirit
+from classes.stock import Beer, Wine, Spirit
 from functions.basic import underscoreBar
 
 def saveFile(bar):
@@ -29,6 +29,7 @@ def loadFile(bar):
                     case "beer": item = Beer(name, alc, cost)
                     case "wine": item = Wine(name,alc, cost)
                     case "spirit": item = Spirit(name, alc, cost) 
+                    case "mix": pass #FOR COCKTAILS
                 bar.add_item(item)
     except FileNotFoundError:
         print ("Bar not on file, beginning new bar list.")

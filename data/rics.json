@@ -19,5 +19,12 @@
         "cost": 13.0,
         "type": "wine",
         "serve": "glass"
+    },
+    {
+        "name": "Reeftip",
+        "alc": 0.96,
+        "cost": 12.5,
+        "type": "spirit",
+        "serve": "nip"
     }
 ]

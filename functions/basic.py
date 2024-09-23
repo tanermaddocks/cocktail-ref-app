@@ -9,6 +9,7 @@ def mainMenu():
     print ("5. Remove item.")
     print ("E. Exit application.")
     choice = str.upper (input ("\nEnter your choice here: "))
+    print()
     return choice
 
 def capitalFullString(string):
@@ -26,3 +27,9 @@ def underscoreBar (bar_name):
     bar_name_list = str.split(str(bar_name))
     bar_name_join = "_".join(bar_name_list)
     return bar_name_join
+
+def wrongChoice(includeMix):
+    if includeMix:
+        print ("Invalid item type, choose from beer, wine spirit or cocktail.")
+    else:
+        print ("Invalid item type, choose from beer, wine or spirit.")
