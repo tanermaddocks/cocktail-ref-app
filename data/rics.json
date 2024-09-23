@@ -1,9 +1,23 @@
 [
     {
         "name": "Toohey's New",
-        "alc": 1.6,
+        "alc": 1.82,
         "cost": 10.0,
         "type": "beer",
         "serve": "pint"
+    },
+    {
+        "name": "Smirnoff Red",
+        "alc": 0.89,
+        "cost": 8.0,
+        "type": "spirit",
+        "serve": "nip"
+    },
+    {
+        "name": "Wild Oat's Chardonnay",
+        "alc": 1.56,
+        "cost": 13.0,
+        "type": "wine",
+        "serve": "glass"
     }
 ]

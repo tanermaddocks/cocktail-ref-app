@@ -13,12 +13,12 @@ def addStock(bar):
     #item name
     name = capitalFullString(input(f"What is the name of the {item_type}? "))
     #item strength in percent
-    alcper =  float(input(f"What is the alcohol percentage of {name}? "))
+    alcper =  float(input(f"What is the alcohol percentage of {name}? ")) #VALUEERROR
     match item_type:
         #for beer
         case "beer":
             #standard calc
-            alc = standardCalc(alcper, 570)
+            alc = standardCalc(alcper, 570) #Maybe make serve size an input?
             #item cost
             cost = float(input(f"How much does {name} cost for a pint (570mL)? "))
             #extra info
@@ -51,4 +51,5 @@ pass
 def listItem(bar):
     all_items = bar.get_items()
     if not all_items: print ("No items in bar.") 
-    for item in all_items: print (item)
+    for item in all_items: 
+        print (item)

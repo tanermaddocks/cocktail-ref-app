@@ -1,6 +1,6 @@
 from functions.basic import mainMenu
 from functions.stock_function import addStock, listItem
-from functions.file_function import saveExit, loadFile
+from functions.file_function import saveFile, loadFile
 from classes.bar import Bar
 
 # App welcome
@@ -42,7 +42,7 @@ while choice != "E":
             pass
         case "E":
             # Close application
-            saveExit(bar)
+            saveFile(bar)
             pass
         case _:
             print ("Invalid input, try again.\n")

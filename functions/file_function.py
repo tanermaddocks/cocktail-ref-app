@@ -2,7 +2,7 @@ import json
 from classes.stock import Beverage, Beer, Wine, Spirit
 from functions.basic import underscoreBar
 
-def saveExit(bar):
+def saveFile(bar):
     item_dict = []
     for item in bar.get_items():
         item_json = {
@@ -20,9 +20,15 @@ def loadFile(bar):
     try:
         with open(f"data/{underscoreBar(bar)}.json", "r") as json_file:
             item_dict = json.load(json_file)
-        for bev in item_dict:
-            # if item.get("beer"):
-            bev = Beverage(bev["name"]["alc"]["cost"]["type"]["serve"]) #FIGURE PROPER SETUP
-            bar.add_item(bev)
+            for item in item_dict:
+                name = item["name"]
+                alc = item["alc"]
+                cost = item["cost"]
+                type = item["type"]
+                match type:
+                    case "beer": item = Beer(name, alc, cost)
+                    case "wine": item = Wine(name,alc, cost)
+                    case "spirit": item = Spirit(name, alc, cost) 
+                bar.add_item(item)
     except FileNotFoundError:
         print ("Bar not on file, beginning new bar list.")
