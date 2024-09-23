@@ -1,6 +1,7 @@
 class Beverage:
     #contructor
-    def __init__ (self, name, alc, cost) -> None:
+    def __init__ (self, code, name, alc, cost) -> None:
+        self.code = code
         self.name = name
         self.alc = alc
         self.cost = cost
@@ -16,6 +17,8 @@ class Beverage:
         self.cost = cost
         self.type = type
 
+    def get_item_code(self):
+        return self.code
     def get_item_name(self):
         return self.name
     def get_item_alc(self):
@@ -30,20 +33,20 @@ class Beverage:
 
 class Beer (Beverage):
     #constructor
-    def __init__(self, name, alc, cost):
-        super().__init__(name, alc, cost)
+    def __init__(self, code, name, alc, cost):
+        super().__init__(code, name, alc, cost)
         self.type = "beer"
 
 class Wine (Beverage):
     #constructor
-    def __init__(self, name, alc, cost):
-        super().__init__(name, alc, cost)
+    def __init__(self, code, name, alc, cost):
+        super().__init__(code, name, alc, cost)
         self.type = "wine"
         self.serve = "glass"
 
 class Spirit (Beverage):
     #constructor
-    def __init__ (self, name, alc, cost):
-        super().__init__(name, alc, cost)
+    def __init__ (self, code, name, alc, cost):
+        super().__init__(code, name, alc, cost)
         self.type = "spirit"
         self.serve = "nip"

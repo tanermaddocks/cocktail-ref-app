@@ -19,6 +19,7 @@ def saveFile(bar):
     item_dict = []
     for item in bar.get_items():
         item_json = {
+            "code": item.get_item_code(),
             "name": item.get_item_name(),
             "alc": item.get_item_alc(),
             "cost": item.get_item_cost(),
@@ -54,14 +55,15 @@ def loadMenu(bar):
         with open(f"data/{bar}/{bar}.json_menu", "r") as json_file:
             item_dict = json.load(json_file)
             for item in item_dict:
+                code = item["code"]
                 name = item["name"]
                 alc = item["alc"]
                 cost = item["cost"]
                 type = item["type"]
                 match type:
-                    case "beer": item = Beer(name, alc, cost)
-                    case "wine": item = Wine(name,alc, cost)
-                    case "spirit": item = Spirit(name, alc, cost) 
+                    case "beer": item = Beer(code, name, alc, cost)
+                    case "wine": item = Wine(code, name,alc, cost)
+                    case "spirit": item = Spirit(code, name, alc, cost) 
                     case "mix": pass #FOR COCKTAILS
                 bar.add_item(item)
     except FileNotFoundError: pass

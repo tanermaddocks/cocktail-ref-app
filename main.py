@@ -41,10 +41,10 @@ while choice != "E":
             # Remove any item
             pass
         case "E":
-            # Save then end loop to close application
-            saveFile(bar)
+            # End loop to close application
+            pass
         case _:
-            print ("Invalid input, try again.\n")
+            print ("Invalid input, try again.")
         
 
 
