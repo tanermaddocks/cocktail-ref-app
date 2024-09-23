@@ -1,5 +1,5 @@
 from functions.basic import mainMenu, fileForm
-from functions.stock_function import addStock, listItem
+from functions.item_function import *
 from functions.file_function import saveFile, loadInfo, loadMenu
 
 # App welcome
@@ -37,6 +37,7 @@ while choice != "E":
                 # See all
             pass
         case "5":
+            removeItem(bar)
             # Remove any item
             pass
         case "E":

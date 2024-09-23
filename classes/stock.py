@@ -33,7 +33,6 @@ class Beer (Beverage):
     def __init__(self, name, alc, cost):
         super().__init__(name, alc, cost)
         self.type = "beer"
-        self.serve = "pint"
 
 class Wine (Beverage):
     #constructor

@@ -8,11 +8,11 @@ class Bar:
         
     def __str__(self) -> str:
         return self.name
-
+    
     def get_name(self):
         return self.name
 
-    def get_serve(self):
+    def get_serve(self) -> str:
         return self.serve
     
     def set_serve(self, serve):

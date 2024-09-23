@@ -1,5 +1,5 @@
 from classes.stock import Beer, Wine, Spirit
-from functions.basic import capitalFullString, standardCalc, wrongChoice
+from functions.basic import capitalFullString, wrongChoice
 from functions.file_function import saveFile
 
 
@@ -15,12 +15,10 @@ def addStock(bar):
     #item name
     name = capitalFullString(input(f"What is the name of the {item_type}? "))
     #item strength in percent
-    alcper =  float(input(f"What is the alcohol percentage of {name}? ")) #VALUEERROR
+    alc =  float(input(f"What is the alcohol percentage of {name}? ")) #VALUEERROR
     match item_type:
         #for beer
         case "beer":
-            #standard calc
-            alc = standardCalc(alcper, 570) #Maybe make serve size an input?
             #item cost
             cost = float(input(f"How much does {name} cost for a pint (570mL)? "))
             #extra info
@@ -28,14 +26,12 @@ def addStock(bar):
             new_item = Beer(name, alc, cost)
         #for wine
         case "wine":
-            alc = standardCalc(alcper, 150)
             cost = float(input(f"How much does {name} cost for a glass (150mL)? "))
             #extra info
             pass
             new_item = Wine(name, alc, cost)
         #for spirit
         case "spirit":
-            alc = standardCalc(alcper, 30)
             cost = float(input(f"How much does {name} cost for a nip (30mL)? "))
             #extra info
             pass
@@ -50,7 +46,9 @@ def addStock(bar):
         print("Add item cancelled, try again.")
 
 # Remove item
-pass
+def removeItem(bar):
+    target = input("Enter the name of the item you would like to remove: ")
+    
 
 # Search item
 pass
@@ -66,16 +64,22 @@ def listItem(bar):
         printList = f"-> {item.get_item_name()} - ${item.get_item_cost()}"
         match type:
             case "beer": 
+                #see beer
                 if item.get_item_type() == "beer": print(printList)
             case "wine":
+                #see wine
                 if item.get_item_type() == "wine": print(printList)
             case "spirit":
+                #see spirit
                 if item.get_item_type() == "spirit": print(printList)
             case "mix": 
+                #see mix
                 pass
-            case "all": 
+            case "all":
+                #see all
                 print(printList)
-            case _: 
+            case _:
+                #wrong input
                 wrongChoice(True)
         
     
