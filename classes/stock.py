@@ -24,14 +24,16 @@ class Beverage:
         return self.cost
     def get_item_type(self):
         return self.type
+    def get_item_serve(self):
+        return self.serve
 
 
 class Beer (Beverage):
     #constructor
-    def __init__(self, name, alc, cost, serve):
+    def __init__(self, name, alc, cost):
         super().__init__(name, alc, cost)
         self.type = "beer"
-        self.serve = serve
+        self.serve = "pint"
 
 class Wine (Beverage):
     #constructor

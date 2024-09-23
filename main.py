@@ -1,15 +1,14 @@
-from functions.basic import mainMenu
+from functions.basic import mainMenu, fileForm
 from functions.stock_function import addStock, listItem
-from functions.file_function import saveFile, loadFile
-from classes.bar import Bar
+from functions.file_function import saveFile, loadInfo, loadMenu
 
 # App welcome
 print ("Cocktail Reference Application\n")
 
 # Load in database
-bar = Bar(str.lower(input("Name of your bar: ")))
-loadFile (bar) #if file does not exist, new bar will be created.
-# print (bar)
+barname = fileForm(str(input("Name of your bar: ")))
+bar = loadInfo(barname) #if file does not exist, new bar will be created.
+loadMenu(bar)
 
 # Menu
 choice = ""

@@ -13,20 +13,26 @@ def mainMenu():
     return choice
 
 def capitalFullString(string):
-    string_list = str.split(string)
+    string_list = string.lower().split()
+    string_list_cap = []
     for word in string_list:
-        str.capitalize(word)
-    string = " ".join(string_list)
-    return string
+        string_list_cap.append(word.capitalize())
+    string_cap = " ".join(string_list_cap)
+    return string_cap
 
 def standardCalc(alcpercent, vol):
     standard = round(((alcpercent/100 * vol)/(10/0.78)), 2)
     return standard
 
-def underscoreBar (bar_name):
-    bar_name_list = str.split(str(bar_name))
-    bar_name_join = "_".join(bar_name_list)
-    return bar_name_join
+def fileForm(bar_name):
+    bar_no_special = []
+    for character in bar_name:
+        if character in '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"':
+            continue
+        else:
+            bar_no_special.append(character.lower())
+    bar_name_file = "_".join(("".join(bar_no_special)).split())
+    return bar_name_file
 
 def wrongChoice(includeMix):
     if includeMix:

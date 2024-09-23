@@ -42,7 +42,7 @@ def addStock(bar):
             new_item = Spirit(name, alc, cost)
     #add item to bar dictionary
     print(new_item)
-    confirm = str.lower(input("Is all information correct? (y/n): "))
+    confirm = str.lower(input("Is all information correct? (yes/no): "))
     if confirm == "y" or "yes":
         bar.add_item(new_item)
         saveFile(bar)
@@ -58,7 +58,7 @@ pass
 # List items
 def listItem(bar):
     all_items = bar.get_items()
-    if not all_items: print ("No items in bar.")
+    if not all_items: return print ("No items in bar.")
     print ("Which items would you like to see?")
     type = str.lower(input("Choose from beer, wine, spirit, mix or all: "))
     print()

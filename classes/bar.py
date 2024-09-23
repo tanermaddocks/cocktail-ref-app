@@ -6,9 +6,12 @@ class Bar:
         self.serve = serve
         self.items = []
         
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
-    
+
+    def get_name(self):
+        return self.name
+
     def get_serve(self):
         return self.serve
     
