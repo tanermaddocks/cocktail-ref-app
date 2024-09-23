@@ -41,12 +41,11 @@ while choice != "E":
             # Remove any item
             pass
         case "E":
-            # Close application
+            # Save then close application
             saveFile(bar)
-            pass
         case _:
             print ("Invalid input, try again.\n")
         
 
 
-print ("\nThank for for using the cocktail reference application!")
+print ("Thank for for using the cocktail reference application!")

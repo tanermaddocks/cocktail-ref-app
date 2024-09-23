@@ -1,5 +1,6 @@
 from classes.stock import Beer, Wine, Spirit
 from functions.basic import capitalFullString, standardCalc, wrongChoice
+from functions.file_function import saveFile
 
 
 # Add item
@@ -40,7 +41,13 @@ def addStock(bar):
             pass
             new_item = Spirit(name, alc, cost)
     #add item to bar dictionary
-    return bar.add_item(new_item)
+    print(new_item)
+    confirm = str.lower(input("Is all information correct? (y/n): "))
+    if (confirm == "y" or "yes") and (confirm != "n" or "no"):
+        bar.add_item(new_item)
+        saveFile(bar)
+    else:
+        print("Add item cancelled, try again.")
 
 # Remove item
 pass
@@ -56,17 +63,18 @@ def listItem(bar):
     type = str.lower(input("Choose from beer, wine, spirit, mix or all: "))
     print()
     for item in all_items: 
+        printList = f"-> {item.get_item_name()} - ${item.get_item_cost()}"
         match type:
             case "beer": 
-                if item.get_item_type() == "beer": print(item) 
+                if item.get_item_type() == "beer": print(printList)
             case "wine":
-                if item.get_item_type() == "wine": print(item) 
+                if item.get_item_type() == "wine": print(printList)
             case "spirit":
-                if item.get_item_type() == "spirit": print (item)
+                if item.get_item_type() == "spirit": print(printList)
             case "mix": 
                 pass
             case "all": 
-                print(item)
+                print(printList)
             case _: 
                 wrongChoice(True)
         

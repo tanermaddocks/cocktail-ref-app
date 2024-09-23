@@ -26,5 +26,19 @@
         "cost": 12.5,
         "type": "spirit",
         "serve": "nip"
+    },
+    {
+        "name": "Byron Bay Premium Lager",
+        "alc": 1.92,
+        "cost": 14.0,
+        "type": "beer",
+        "serve": "pint"
+    },
+    {
+        "name": "Gordon's Gin",
+        "alc": 0.89,
+        "cost": 11.0,
+        "type": "spirit",
+        "serve": "nip"
     }
 ]

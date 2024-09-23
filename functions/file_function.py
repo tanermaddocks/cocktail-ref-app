@@ -15,6 +15,7 @@ def saveFile(bar):
         item_dict.append(item_json)
     with open(f"data/{underscoreBar(bar)}.json", "w") as json_file:
         json.dump(item_dict, json_file, indent=4)
+    print ("Bar menu updated.")
 
 def loadFile(bar):
     try:
