@@ -20,7 +20,7 @@ def capitalFullString(string):
     return string
 
 def standardCalc(alcpercent, vol):
-    standard = round(((alcpercent/100 * vol)/12.5), 2)
+    standard = round(((alcpercent/100 * vol)/(10/0.78)), 2)
     return standard
 
 def underscoreBar (bar_name):
@@ -33,3 +33,11 @@ def wrongChoice(includeMix):
         print ("Invalid item type, choose from beer, wine spirit or cocktail.")
     else:
         print ("Invalid item type, choose from beer, wine or spirit.")
+
+def serveSize(serve): #unused as of now
+    match serve:
+        case "pot": serve_mL = 285
+        case "schooner": serve_mL = 425
+        case "pint": serve_mL = 570
+        case "stein": serve_mL = 1000
+    return serve_mL

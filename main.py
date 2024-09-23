@@ -4,11 +4,11 @@ from functions.file_function import saveFile, loadFile
 from classes.bar import Bar
 
 # App welcome
-print ("Cocktail Reference Application")
+print ("Cocktail Reference Application\n")
 
 # Load in database
 bar = Bar(str.lower(input("Name of your bar: ")))
-loadFile (bar)
+loadFile (bar) #if file does not exist, new bar will be created.
 # print (bar)
 
 # Menu
@@ -41,7 +41,7 @@ while choice != "E":
             # Remove any item
             pass
         case "E":
-            # Save then close application
+            # Save then end loop to close application
             saveFile(bar)
         case _:
             print ("Invalid input, try again.\n")

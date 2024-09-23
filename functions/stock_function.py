@@ -6,7 +6,7 @@ from functions.file_function import saveFile
 # Add item
 def addStock(bar):
     #ask for item type being added
-    item_type = str.lower(input("\nWhat item do you wish to add; beer, wine or spirit? "))
+    item_type = str.lower(input("What item do you wish to add; beer, wine or spirit? "))
     match item_type:
         case "beer": pass
         case "wine": pass
@@ -43,7 +43,7 @@ def addStock(bar):
     #add item to bar dictionary
     print(new_item)
     confirm = str.lower(input("Is all information correct? (y/n): "))
-    if (confirm == "y" or "yes") and (confirm != "n" or "no"):
+    if confirm == "y" or "yes":
         bar.add_item(new_item)
         saveFile(bar)
     else:

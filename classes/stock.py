@@ -8,14 +8,13 @@ class Beverage:
         self.serve = None
 
     def __str__(self) -> str:
-        return f"{self.name}, {self.type}, {self.alc} standards, ${self.cost} for {self.serve}."
+        return f"{self.name}, {self.type}, ${self.cost} for {self.serve}."
 
-    def add_stock (self, name, alc, cost, type, serve):
+    def add_stock (self, name, alc, cost, type):
         self.name = name
         self.alc = alc
         self.cost = cost
         self.type = type
-        self.serve = serve
 
     def get_item_name(self):
         return self.name
@@ -25,16 +24,14 @@ class Beverage:
         return self.cost
     def get_item_type(self):
         return self.type
-    def get_item_serve(self):
-        return self.serve
 
 
 class Beer (Beverage):
     #constructor
-    def __init__(self, name, alc, cost):
+    def __init__(self, name, alc, cost, serve):
         super().__init__(name, alc, cost)
         self.type = "beer"
-        self.serve = "pint"
+        self.serve = serve
 
 class Wine (Beverage):
     #constructor

@@ -1,8 +1,17 @@
 import json
+from classes.bar import Bar
 from classes.stock import Beer, Wine, Spirit
 from functions.basic import underscoreBar
 
 def saveFile(bar):
+    #info save
+    bar_info = {
+        "barname": str(bar),
+        "barserve": bar.get_serve()
+        }
+    with open(f"data/{underscoreBar(bar)}/{underscoreBar}_info.json", "w") as json_file:
+        json.dump(bar_info, json_file, indent=4)
+    #menu save
     item_dict = []
     for item in bar.get_items():
         item_json = {
@@ -13,13 +22,20 @@ def saveFile(bar):
             "serve": item.get_item_serve()
         }
         item_dict.append(item_json)
-    with open(f"data/{underscoreBar(bar)}.json", "w") as json_file:
+    with open(f"data/{underscoreBar(bar)}/{underscoreBar(bar)}_menu.json", "w") as json_file:
         json.dump(item_dict, json_file, indent=4)
     print ("Bar menu updated.")
 
 def loadFile(bar):
     try:
-        with open(f"data/{underscoreBar(bar)}.json", "r") as json_file:
+        #info load
+        with open(f"data/{underscoreBar(bar)}/{underscoreBar}_info.json", "r") as json_file:
+            bar_info = json.load(json_file)
+            barname = ["barname"]
+            barserve = ["barserve"]
+            bar.add_item
+        #menu load
+        with open(f"data/{underscoreBar}/{underscoreBar(bar)}.json_menu", "r") as json_file:
             item_dict = json.load(json_file)
             for item in item_dict:
                 name = item["name"]
@@ -33,4 +49,12 @@ def loadFile(bar):
                     case "mix": pass #FOR COCKTAILS
                 bar.add_item(item)
     except FileNotFoundError:
-        print ("Bar not on file, beginning new bar list.")
+        confirm = input("Bar not on file, do you want to add a new bar? (yes/no): ")
+        if confirm == "yes":
+            print ("What does your bar use as a standard beer serve?")
+            standard_beer_serve = input("Choose one of pot, schooner, pint or stein: ")
+            return bar.set_serve(standard_beer_serve)
+        else:
+            print ("Thank for for using the cocktail reference application!")
+            return exit()
+    
