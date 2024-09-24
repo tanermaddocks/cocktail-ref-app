@@ -21,7 +21,6 @@ while choice != "E":
         case "2": 
             # Create mix
             pass           
-
         case "3": 
             # Search for an item
                 # Search by name

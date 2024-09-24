@@ -9,13 +9,14 @@ class Beverage:
         self.serve = None
 
     def __str__(self) -> str:
-        return f"{self.name}, {self.type}, ${self.cost} for {self.serve}."
+        return f"#{self.code} -> {self.name}, {self.type}, ${self.cost}."
 
-    def add_stock (self, name, alc, cost, type):
-        self.name = name
-        self.alc = alc
-        self.cost = cost
-        self.type = type
+    # def add_stock (self, code, name, alc, cost, type):
+    #     self.code = code
+    #     self.name = name
+    #     self.alc = alc
+    #     self.cost = cost
+    #     self.type = type
 
     def get_item_code(self):
         return self.code

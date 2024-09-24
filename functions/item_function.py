@@ -14,9 +14,8 @@ def addStock(bar):
         existing_code.append(item.get_item_code())
     x = 0
     while x == 0:
-        code = format(random.randint(0, 999999), "06d")
-        if code in existing_code: continue
-        else: break
+        code = format(random.randint(0, 9999), "06d")
+        if code not in existing_code: x += 1
 
     #ask for item type being added
     item_type = str.lower(input("What item do you wish to add; beer, wine or spirit? "))
@@ -47,16 +46,25 @@ def addStock(bar):
     
     #add item to bar dictionary
     print(new_item)
-    confirm = str.lower(input("Is all information correct? (yes/no): "))
-    if confirm == "yes":
-        bar.add_item(new_item)
-        saveFile(bar)
-    else:
-        print("Add item cancelled, try again.")
+    confirm = ""
+    while confirm != "":
+        confirm = str.lower(input("Add this item to menu? (yes/no): "))
+        if confirm == "yes":
+            bar.add_item(new_item)
+            saveFile(bar)
+        elif confirm == "no": print("Add item cancelled.")
+        else: 
+            print ("Invalid input, try again.")
+            confirm = ""
+        
 
 # Remove item
 def removeItem(bar):
-    target = input("Enter the name of the item you would like to remove: ")
+    identify_target = str.lower(input("Delete item by name or by code?"))
+    if identify_target == "name": pass
+    elif identify_target == "code": pass
+    else: return print("Invalid input, try again")
+    target = input(f"Enter the {identify_target} of the item you would like to remove: ")
 
 
 # Search item
