@@ -21,5 +21,15 @@ class Bar:
     def add_item(self, new_item):
         self.items.append(new_item)
 
+    def delete_item(self, item_code):
+        new_menu = []
+        deleted = False
+        for item in self.items:
+            if item.get_item_code != item_code:
+                new_menu.append(item)  
+            else: deleted = True
+        self.items = new_menu
+        return deleted
+
     def get_items(self):
         return self.items

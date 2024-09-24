@@ -47,12 +47,13 @@ def addStock(bar):
     #add item to bar dictionary
     print(new_item)
     confirm = ""
-    while confirm != "":
+    while confirm == "":
         confirm = str.lower(input("Add this item to menu? (yes/no): "))
-        if confirm == "yes":
+        if confirm == ("yes" or "y"):
             bar.add_item(new_item)
             saveFile(bar)
-        elif confirm == "no": print("Add item cancelled.")
+        elif confirm == ("no" or "n"): 
+            print("Add item cancelled.")
         else: 
             print ("Invalid input, try again.")
             confirm = ""
@@ -60,11 +61,35 @@ def addStock(bar):
 
 # Remove item
 def removeItem(bar):
-    identify_target = str.lower(input("Delete item by name or by code?"))
-    if identify_target == "name": pass
-    elif identify_target == "code": pass
-    else: return print("Invalid input, try again")
+    identify_target = str.lower(input("Delete item by code or by name? "))
+    if identify_target != ("code" or "name"): 
+        return print("Invalid input, try again.")
     target = input(f"Enter the {identify_target} of the item you would like to remove: ")
+
+    if identify_target == "code":
+        target = valueErrorCheck(format(int(target)), "06d")
+    elif identify_target == "name": 
+        target = capitalFullString(target)
+        all_items = bar.get_items()
+        for item in all_items:
+            if item.get_item_name != target:
+                continue
+            else:
+                target_name = item.get_item_name
+                target = item.get_item_code()
+    confirm = str.lower(input(f"Delete {target_name} from menu? (yes/no): "))
+    if confirm == ("yes" or "y"):
+        bar.remove_item(target)
+        saveFile(bar)
+    elif confirm == ("no" or "n"): 
+        print("Delete item cancelled.")
+                
+
+    
+    complete = bar.delete_item(target)
+    if complete:
+        saveFile(bar)
+
 
 
 # Search item
@@ -78,7 +103,7 @@ def listItem(bar):
     type = str.lower(input("Choose from beer, wine, spirit, mix or all: "))
     print()
     for item in all_items: 
-        printList = f"-> {item.get_item_name()} - ${item.get_item_cost()}"
+        printList = f"#{item.get_item_code()} -> {item.get_item_name()} - ${item.get_item_cost()}"
         match type:
             case "beer": 
                 #see beer

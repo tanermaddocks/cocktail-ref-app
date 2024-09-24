@@ -9,7 +9,7 @@ class Beverage:
         self.serve = None
 
     def __str__(self) -> str:
-        return f"#{self.code} -> {self.name}, {self.type}, ${self.cost}."
+        return f"#{self.code} -> {self.name} is a {self.type} with an alcohol percentage of {self.alc}% and costs ${self.cost} for a {self.serve}."
 
     # def add_stock (self, code, name, alc, cost, type):
     #     self.code = code

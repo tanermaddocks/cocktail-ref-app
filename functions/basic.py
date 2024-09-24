@@ -27,9 +27,7 @@ def standardCalc(alcpercent, vol): #unused as of now
 def fileForm(bar_name):
     bar_no_special = []
     for character in bar_name:
-        if character in '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"':
-            continue
-        else:
+        if character not in '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"':
             bar_no_special.append(character.lower())
     bar_name_file = "_".join(("".join(bar_no_special)).split())
     return bar_name_file
@@ -44,7 +42,7 @@ def valueErrorCheck(prompt):
             print ("Must be a number, please try again.\n")
             continue
     return value
-
+ 
 def wrongChoice(includeMix):
     if includeMix:
         print ("Invalid item type, choose from beer, wine spirit or cocktail.")

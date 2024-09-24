@@ -52,7 +52,7 @@ def loadInfo(barname):
 def loadMenu(bar):
     try:
         #menu load
-        with open(f"data/{bar}/{bar}.json_menu", "r") as json_file:
+        with open(f"data/{bar}/{bar}_menu.json", "r") as json_file:
             item_dict = json.load(json_file)
             for item in item_dict:
                 code = item["code"]
