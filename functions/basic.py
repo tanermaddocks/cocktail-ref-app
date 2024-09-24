@@ -13,7 +13,7 @@ def mainMenu():
     return choice
 
 def capitalFullString(string):
-    string_list = string.lower().split()
+    string_list = string.split()
     string_list_cap = []
     for word in string_list:
         string_list_cap.append(word.capitalize())
@@ -29,13 +29,13 @@ def fileForm(bar_name):
     for character in bar_name:
         if character not in '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"':
             bar_no_special.append(character.lower())
+
     bar_name_file = "_".join(("".join(bar_no_special)).split())
     return bar_name_file
 
 def valueErrorCheck(prompt):
-    value = 1
-    while value != 0:
-        try: 
+    while prompt != "unlikely entry#":
+        try:
             value = float(input(prompt))
             break
         except ValueError: 

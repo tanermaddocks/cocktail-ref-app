@@ -40,7 +40,7 @@ def loadInfo(barname):
             barserve = bar_info["barserve"]
         return Bar(barname, barserve)
     except FileNotFoundError:
-        confirm = input("\nBar not on file, do you want to add a new bar? (yes/no): ")
+        confirm = input("\nBar not on file, do you want to add a new bar? (Enter yes to confirm): ")
         if confirm == "yes":
             print ("\nWhat does your bar use as a standard beer serve?")
             standard_beer_serve = input("Choose one of pot, schooner, pint or stein: ")
@@ -52,11 +52,11 @@ def loadInfo(barname):
 def loadMenu(bar):
     try:
         #menu load
-        with open(f"data/{bar}/{bar}_menu.json", "r") as json_file:
+        with open(f"data/{bar.get_name()}/{bar.get_name()}_menu.json", "r") as json_file:
             item_dict = json.load(json_file)
             for item in item_dict:
                 code = item["code"]
-                name = item["name"]
+                name = item["name"] 
                 alc = item["alc"]
                 cost = item["cost"]
                 type = item["type"]
@@ -66,5 +66,5 @@ def loadMenu(bar):
                     case "spirit": item = Spirit(code, name, alc, cost) 
                     case "mix": pass #FOR COCKTAILS
                 bar.add_item(item)
-    except FileNotFoundError: pass
+    except FileNotFoundError: print ("Failed to load menu!")
     

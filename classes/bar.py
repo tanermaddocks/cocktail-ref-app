@@ -1,5 +1,7 @@
 #Bar class is where items are stored, otherwise gives the name in an dictionary.
 
+from functions.basic import capitalFullString
+
 class Bar:
     def __init__(self, name, serve):
         self.name = name
@@ -7,7 +9,10 @@ class Bar:
         self.items = []
         
     def __str__(self) -> str:
-        return self.name
+        name = self.name.split("_")
+        name = " ".join(name)
+        name = capitalFullString(name)
+        return name
     
     def get_name(self):
         return self.name
@@ -25,7 +30,7 @@ class Bar:
         new_menu = []
         deleted = False
         for item in self.items:
-            if item.get_item_code != item_code:
+            if item.get_item_code() != item_code:
                 new_menu.append(item)  
             else: deleted = True
         self.items = new_menu

@@ -30,10 +30,9 @@ def addStock(bar):
 
     #item strength in percent
     alc = valueErrorCheck(f"What is the alcohol percentage of {name}? ")
-    print (alc)
 
     #item cost
-    cost = valueErrorCheck(f"How much does {name} cost for a STANDARD SERVE? ")
+    cost = format(valueErrorCheck(f"How much does {name} cost for a STANDARD SERVE? "), ".2f")
 
     #insert into a class relevant to type
     match item_type:
@@ -46,49 +45,50 @@ def addStock(bar):
     
     #add item to bar dictionary
     print(new_item)
-    confirm = ""
-    while confirm == "":
-        confirm = str.lower(input("Add this item to menu? (yes/no): "))
-        if confirm == ("yes" or "y"):
-            bar.add_item(new_item)
-            saveFile(bar)
-        elif confirm == ("no" or "n"): 
-            print("Add item cancelled.")
-        else: 
-            print ("Invalid input, try again.")
-            confirm = ""
+
+    confirm = str.lower(input("Add this item to menu? (Enter yes to confirm): "))
+    if confirm == "yes":
+        bar.add_item(new_item)
+        saveFile(bar)
+    else:
+        print("Add item cancelled.")
+
         
 
 # Remove item
 def removeItem(bar):
     identify_target = str.lower(input("Delete item by code or by name? "))
-    if identify_target != ("code" or "name"): 
-        return print("Invalid input, try again.")
-    target = input(f"Enter the {identify_target} of the item you would like to remove: ")
+    # if identify_target != ("code" or "name"):
+    #     return print("Invalid input, try again.")
+    if identify_target == "code": pass
+    elif identify_target == "name": pass
+    else: return print("Invalid input, try again.")
+    prompt = f"Enter {identify_target} of item to be removed: "
 
-    if identify_target == "code":
-        target = valueErrorCheck(format(int(target)), "06d")
-    elif identify_target == "name": 
-        target = capitalFullString(target)
-        all_items = bar.get_items()
-        for item in all_items:
-            if item.get_item_name != target:
-                continue
-            else:
-                target_name = item.get_item_name
+    #find item code and name
+    if identify_target == "code": target = format(int(valueErrorCheck(prompt)), "06d")
+    elif identify_target == "name": target = capitalFullString(input(prompt))
+    all_items = bar.get_items()
+    for item in all_items:
+        if identify_target == "code":
+            if item.get_item_code() == target:
+                target_name = item.get_item_name()
+                break
+        elif identify_target == "name": 
+            if item.get_item_name() == target:
                 target = item.get_item_code()
-    confirm = str.lower(input(f"Delete {target_name} from menu? (yes/no): "))
-    if confirm == ("yes" or "y"):
-        bar.remove_item(target)
-        saveFile(bar)
-    elif confirm == ("no" or "n"): 
-        print("Delete item cancelled.")
-                
+                target_name = item.get_item_name()
+                break
+    #if none found
+    else: return print(f"No item in {bar}'s menu with that {identify_target}.")
 
-    
-    complete = bar.delete_item(target)
-    if complete:
+    #confirm delete
+    confirm = str.lower(input(f"Delete {target_name} from {bar}'s menu? (Enter yes to confirm): "))
+    if confirm == "yes":
+        bar.delete_item(target)
+        print(f"{target_name} deleted from {bar}'s menu.")
         saveFile(bar)
+    else: print("Delete item cancelled.")
 
 
 
