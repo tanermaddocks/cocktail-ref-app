@@ -50,9 +50,10 @@ def loadInfo(barname):
             exit()
 
 def loadMenu(bar):
+    barname = bar.get_name()
     try:
         #menu load
-        with open(f"data/{bar.get_name()}/{bar.get_name()}_menu.json", "r") as json_file:
+        with open(f"data/{barname}/{barname}_menu.json", "r") as json_file:
             item_dict = json.load(json_file)
             for item in item_dict:
                 code = item["code"]
@@ -60,8 +61,9 @@ def loadMenu(bar):
                 alc = item["alc"]
                 cost = item["cost"]
                 type = item["type"]
+                serve = item["serve"]
                 match type:
-                    case "beer": item = Beer(code, name, alc, cost)
+                    case "beer": item = Beer(code, name, alc, cost, serve)
                     case "wine": item = Wine(code, name,alc, cost)
                     case "spirit": item = Spirit(code, name, alc, cost) 
                     case "mix": pass #FOR COCKTAILS

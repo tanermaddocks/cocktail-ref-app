@@ -37,11 +37,15 @@ def addStock(bar):
     #insert into a class relevant to type
     match item_type:
         #for beer
-        case "beer": new_item = Beer(code, name, alc, cost)
+        case "beer": 
+            beer_serve = bar.get_serve()
+            new_item = Beer(code, name, alc, cost, beer_serve)
         #for wine
-        case "wine": new_item = Wine(code, name, alc, cost) 
+        case "wine": 
+            new_item = Wine(code, name, alc, cost) 
         #for spirit
-        case "spirit": new_item = Spirit(code, name, alc, cost)    
+        case "spirit": 
+            new_item = Spirit(code, name, alc, cost)    
     
     #add item to bar dictionary
     print(new_item)
