@@ -1,6 +1,7 @@
 from functions.basic import mainMenu, fileForm
 from functions.item_function import *
 from functions.file_function import saveFile, loadInfo, loadMenu
+from functions.common_print import exitMessage
 
 # App welcome
 print ("Cocktail Reference Application\n")
@@ -24,7 +25,7 @@ while choice != "E":
         case "3": 
             # Search for an item
                 # Search by name
-                # Search by reference
+                # Search by code
             pass
         case "4": 
             # View lists
@@ -41,10 +42,8 @@ while choice != "E":
             pass
         case "E":
             # End loop to close application
-            pass
+            saveFile(bar)
         case _:
             print ("Invalid input, try again.")
         
-
-
-print ("Thank for for using the cocktail reference application!")
+exitMessage()

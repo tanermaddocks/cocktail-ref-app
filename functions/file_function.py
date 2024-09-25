@@ -2,6 +2,7 @@ import json, os
 from classes.bar import Bar
 from classes.stock import Beer, Wine, Spirit
 from functions.basic import valueErrorCheck, confirm 
+from functions.common_print import exitMessage, invalidEntry
 
 def saveFile(bar):
     barname = bar.get_name()
@@ -56,11 +57,11 @@ def loadInfo(barname):
                     case "schooner": break
                     case "pint": break
                     case "stein": break
-                    case _: print ("Invalid input, try again.")
+                    case _: invalidEntry
             standard_wine_serve = int(valueErrorCheck("Volume of a standard wine glass (in mL): "))
             return Bar(barname, standard_beer_serve, standard_wine_serve)
         else:
-            print ("\nThank for for using the cocktail reference application!")
+            exitMessage()
             exit()
 
 def loadMenu(bar):
@@ -82,5 +83,5 @@ def loadMenu(bar):
                     case "spirit": item = Spirit(code, name, alc, cost) 
                     case "mix": pass #FOR COCKTAILS
                 bar.add_item(item)
-    except FileNotFoundError: print ("Failed to load menu!")
+    except FileNotFoundError: pass
     
