@@ -9,7 +9,7 @@ class Beverage:
         self.serve = None
 
     def __str__(self) -> str:
-        return f"#{self.code} -> {self.name} is a {self.type} with an alcohol percentage of {self.alc}% and costs ${self.cost} for a {self.serve}."
+        return f"#{self.code} -> {self.name} is a {self.type}, {self.alc}%, ${format(self.cost, ".2f")} for a {self.serve} glass."
 
     # def add_stock (self, code, name, alc, cost, type):
     #     self.code = code
@@ -20,22 +20,16 @@ class Beverage:
 
     def get_item_code(self):
         return self.code
-    def get_code_from_name(self):
-        pass
     def get_item_name(self):
         return self.name
     def get_item_alc(self):
         return self.alc
     def get_item_cost(self):
         return self.cost
-    def get_cost_display(self):
-        display_cost = format(self.cost, ".2f")
-        return display_cost
     def get_item_type(self):
         return self.type
     def get_item_serve(self):
         return self.serve
-
 
 class Beer (Beverage):
     #constructor

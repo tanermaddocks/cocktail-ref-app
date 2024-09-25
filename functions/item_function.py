@@ -110,7 +110,7 @@ def listItem(bar):
     type = str.lower(input("Choose from beer, wine, spirit, mix or all: "))
     print()
     for item in all_items: 
-        printList = f"#{item.get_item_code()} -> {item.get_item_name()} - ${item.get_item_cost()}"
+        printList = f"#{item.get_item_code()} -> {item.get_item_name()} - ${format(item.get_item_cost(), ".2f")}"
         match type:
             case "beer": 
                 #see beer

@@ -33,6 +33,10 @@ class Bar:
     def add_item(self, new_item):
         self.items.append(new_item)
 
+    def search_items(self, entry):
+        # TO DO!!!
+        pass
+
     def delete_item(self, item_code):
         new_menu = []
         deleted = False
