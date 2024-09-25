@@ -1,6 +1,7 @@
 import json, os
 from classes.bar import Bar
 from classes.stock import Beer, Wine, Spirit
+from functions.basic import valueErrorCheck, confirm 
 
 def saveFile(bar):
     barname = bar.get_name()
@@ -10,7 +11,8 @@ def saveFile(bar):
     except FileExistsError: pass
     bar_info = {
         "barname": bar.get_name(),
-        "barserve": bar.get_serve()
+        "beerserve": bar.get_beer_serve(),
+        "wineserve": bar.get_wine_serve()
         }
     with open(f"data/{barname}/{barname}_info.json", "w") as json_file:
         json.dump(bar_info, json_file, indent=4)
@@ -37,14 +39,26 @@ def loadInfo(barname):
         with open(f"data/{barname}/{barname}_info.json", "r") as json_file:
             bar_info = json.load(json_file)
             barname = bar_info["barname"]
-            barserve = bar_info["barserve"]
-        return Bar(barname, barserve)
+            beerserve = bar_info["beerserve"]
+            wineserve = bar_info["wineserve"]
+        return Bar(barname, beerserve, wineserve)
     except FileNotFoundError:
-        confirm = input("\nBar not on file, do you want to add a new bar? (Enter yes to confirm): ")
-        if confirm == "yes":
-            print ("\nWhat does your bar use as a standard beer serve?")
-            standard_beer_serve = input("Choose one of pot, schooner, pint or stein: ")
-            return Bar(barname, standard_beer_serve)
+        print("\nBar not on file, do you want to add a new bar?")
+        approve = confirm()
+        if approve:
+            print ("\nWhat does your bar use as a standard beer and wine serve?")
+            
+            x = 0
+            while x == 0:
+                standard_beer_serve = input("Choose one of pot, schooner, pint or stein: ")
+                match standard_beer_serve:
+                    case "pot": break
+                    case "schooner": break
+                    case "pint": break
+                    case "stein": break
+                    case _: print ("Invalid input, try again.")
+            standard_wine_serve = int(valueErrorCheck("Volume of a standard wine glass (in mL): "))
+            return Bar(barname, standard_beer_serve, standard_wine_serve)
         else:
             print ("\nThank for for using the cocktail reference application!")
             exit()

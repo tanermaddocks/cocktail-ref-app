@@ -1,7 +1,8 @@
 import random
 
 from classes.stock import Beer, Wine, Spirit
-from functions.basic import capitalFullString, wrongChoice, valueErrorCheck
+from functions.basic import capitalFullString, valueErrorCheck, confirm
+from functions.common_print import wrongChoice, invalidEntry
 from functions.file_function import saveFile
 
 
@@ -31,27 +32,29 @@ def addStock(bar):
     #item strength in percent
     alc = valueErrorCheck(f"What is the alcohol percentage of {name}? ")
 
-    #item cost
-    cost = format(valueErrorCheck(f"How much does {name} cost for a STANDARD SERVE? "), ".2f")
-
     #insert into a class relevant to type
     match item_type:
         #for beer
         case "beer": 
-            beer_serve = bar.get_serve()
+            beer_serve = bar.get_beer_serve()
+            #item cost
+            cost = valueErrorCheck(f"How much does {name} cost for a {beer_serve} glass? ")
             new_item = Beer(code, name, alc, cost, beer_serve)
         #for wine
         case "wine": 
+            wine_serve = bar.get_wine_serve()
+            #item cost
+            cost = valueErrorCheck(f"How much does {name} cost for a {wine_serve}mL glass? ")
             new_item = Wine(code, name, alc, cost) 
         #for spirit
         case "spirit": 
             new_item = Spirit(code, name, alc, cost)    
     
     #add item to bar dictionary
-    print(new_item)
-
-    confirm = str.lower(input("Add this item to menu? (Enter yes to confirm): "))
-    if confirm == "yes":
+    print(f"\n{new_item}")
+    print(f"\nAdd {name} to {bar}'s menu?")
+    approve = confirm()
+    if approve:
         bar.add_item(new_item)
         saveFile(bar)
     else:
@@ -66,7 +69,7 @@ def removeItem(bar):
     #     return print("Invalid input, try again.")
     if identify_target == "code": pass
     elif identify_target == "name": pass
-    else: return print("Invalid input, try again.")
+    else: return invalidEntry
     prompt = f"Enter {identify_target} of item to be removed: "
 
     #find item code and name
@@ -87,10 +90,10 @@ def removeItem(bar):
     else: return print(f"No item in {bar}'s menu with that {identify_target}.")
 
     #confirm delete
-    confirm = str.lower(input(f"Delete {target_name} from {bar}'s menu? (Enter yes to confirm): "))
-    if confirm == "yes":
+    print(f"Delete {target_name} from {bar}'s menu?")
+    approve = confirm()
+    if approve:
         bar.delete_item(target)
-        print(f"{target_name} deleted from {bar}'s menu.")
         saveFile(bar)
     else: print("Delete item cancelled.")
 

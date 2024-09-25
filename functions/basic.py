@@ -1,5 +1,7 @@
 # Simple independent functions.
 
+from functions.common_print import invalidEntry
+
 def mainMenu():
     print ("\nWhat would you like to do?\n")
     print ("1. Add stock.")
@@ -22,6 +24,7 @@ def capitalFullString(string):
 
 def standardCalc(alcpercent, vol): #unused as of now
     standard = round(((alcpercent/100 * vol)/(10/0.78)), 2)
+    #10g is the standard drink in Australia and the density of alcohol is 0.78g/mL
     return standard
 
 def fileForm(bar_name):
@@ -34,7 +37,7 @@ def fileForm(bar_name):
     return bar_name_file
 
 def valueErrorCheck(prompt):
-    while prompt != "unlikely entry#":
+    while prompt != " ":
         try:
             value = float(input(prompt))
             break
@@ -42,12 +45,14 @@ def valueErrorCheck(prompt):
             print ("Must be a number, please try again.\n")
             continue
     return value
- 
-def wrongChoice(includeMix):
-    if includeMix:
-        print ("Invalid item type, choose from beer, wine spirit or cocktail.")
-    else:
-        print ("Invalid item type, choose from beer, wine or spirit.")
+
+def confirm():
+    answer = ""
+    while answer != ("yes" or "no"):
+        answer = str.lower(input("Enter 'yes' to confirm, or 'no' to cancel: "))
+        if answer == "yes": return True
+        elif answer == "no": return False
+        else: invalidEntry()
 
 def serveSize(serve): #unused as of now
     match serve:

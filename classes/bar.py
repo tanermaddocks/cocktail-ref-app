@@ -3,9 +3,10 @@
 from functions.basic import capitalFullString
 
 class Bar:
-    def __init__(self, name, serve):
+    def __init__(self, name, beer_serve, wine_serve):
         self.name = name
-        self.serve = serve
+        self.beer_serve = beer_serve
+        self.wine_serve = wine_serve
         self.items = []
         
     def __str__(self) -> str:
@@ -17,11 +18,17 @@ class Bar:
     def get_name(self):
         return self.name
 
-    def get_serve(self) -> str:
-        return self.serve
+    def get_beer_serve(self):
+        return self.beer_serve
     
-    def set_serve(self, serve):
-        self.serve = serve
+    def set_beer_serve(self, beer_serve):
+        self.serve = beer_serve
+
+    def get_wine_serve(self):
+        return self.wine_serve
+    
+    def set_wine_serve(self, wine_serve):
+        self.serve = wine_serve
 
     def add_item(self, new_item):
         self.items.append(new_item)

@@ -20,12 +20,17 @@ class Beverage:
 
     def get_item_code(self):
         return self.code
+    def get_code_from_name(self):
+        pass
     def get_item_name(self):
         return self.name
     def get_item_alc(self):
         return self.alc
     def get_item_cost(self):
         return self.cost
+    def get_cost_display(self):
+        display_cost = format(self.cost, ".2f")
+        return display_cost
     def get_item_type(self):
         return self.type
     def get_item_serve(self):
