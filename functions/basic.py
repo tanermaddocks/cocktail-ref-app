@@ -1,7 +1,5 @@
 # Simple independent functions.
 
-from functions.basic import invalidEntry
-
 def mainMenu():
     print ("\nWhat would you like to do?\n")
     print ("1. Add stock.")

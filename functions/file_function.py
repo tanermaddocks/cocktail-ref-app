@@ -20,7 +20,16 @@ def saveFile(bar):
     #menu save
     item_dict = []
     for item in bar.get_items():
-        if item.get_item_type() == "beer" or item.get_item_type() == "wine":
+        if item.get_item_type() == "beer":
+            item_json = {
+                "code": item.get_item_code(),
+                "name": item.get_item_name(),
+                "alc": item.get_item_alc(),
+                "cost": item.get_item_cost(),
+                "type": item.get_item_type(),
+                "serve": item.get_item_serve()
+            }
+        elif item.get_item_type() == "wine":
             item_json = {
                 "code": item.get_item_code(),
                 "name": item.get_item_name(),
@@ -30,7 +39,7 @@ def saveFile(bar):
                 "serve": item.get_item_serve()
             }
         elif item.get_item_type() == "spirit":
-                {
+            item_json = {
                 "code": item.get_item_code(),
                 "name": item.get_item_name(),
                 "alc": item.get_item_alc(),

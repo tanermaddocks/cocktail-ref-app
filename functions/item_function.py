@@ -47,7 +47,7 @@ def addStock(bar):
             new_item = Wine(code, name, alc, cost, wine_serve) 
         #for spirit
         case "spirit": 
-            subtype = str.lower(input(f"What kind of spirit is {name}? (vodka, tequila, rum, etc.): "))
+            subtype = str.lower(input(f"What kind of spirit is {name} (vodka, tequila, rum, etc.)? "))
             cost = valueErrorCheck(f"How much does {name} cost for a 30ml nip? ")
             new_item = Spirit(code, name, alc, cost, subtype)    
     
@@ -69,8 +69,8 @@ def searchItem(bar):
 
     choice = ""
     while choice != "e":
-        choice = str.lower(input(f"\nDelete {target_name} or enter E to exit."))
-        if choice == "delete":
+        choice = str.lower(input(f"\nEnter E to return to menu or enter D to delete {target_name}: "))
+        if choice == "d":
             #confirm delete
             print(f"Delete {target} -> {target_name} from {bar}'s menu?")
             approve = confirm()
@@ -78,6 +78,7 @@ def searchItem(bar):
                 bar.delete_item(target)
                 saveFile(bar)
             else: print("Delete item cancelled.")
+            break
 
 
 
