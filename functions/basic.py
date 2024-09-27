@@ -1,27 +1,27 @@
 # Simple independent functions.
 
 def mainMenu():
-    print ("\nWhat would you like to do?\n")
-    print ("1. Add stock.")
-    print ("2. Create cocktail.")
-    print ("3. Search for a drink.")
-    print ("4. View drink lists.")
-    print ("E. Exit application.")
-    choice = str.lower(input ("\nEnter your choice here: "))
+    print("\nWhat would you like to do?\n")
+    print("1. Add stock.")
+    print("2. Create cocktail.")
+    print("3. Search for a drink.")
+    print("4. View drink lists.")
+    print("E. Exit application.")
+    choice = str.lower(input("\nEnter your choice here: "))
     print()
     return choice
 
 def exitMessage():
-    print ("Thank for for using the cocktail reference application!")
+    print("Thank for for using the cocktail reference application!")
 
 def invalidEntry():
-    print ("Invalid entry, try again.")
+    print("Invalid entry, try again.")
 
 def wrongChoice(includeMix):
     if includeMix:
-        print ("Invalid item type, choose from beer, wine spirit or cocktail.")
+        print("Invalid item type, choose from beer, wine spirit or cocktail.")
     else:
-        print ("Invalid item type, choose from beer, wine or spirit.")
+        print("Invalid item type, choose from beer, wine or spirit.")
 
 def capitalFullString(string):
     string_list = string.split()
@@ -30,11 +30,6 @@ def capitalFullString(string):
         string_list_cap.append(word.capitalize())
     string_cap = " ".join(string_list_cap)
     return string_cap
-
-def standardCalc(alcpercent, vol): #unused as of now
-    standard = round(((alcpercent/100 * vol)/(10/0.78)), 2)
-    #10g is the standard drink in Australia and the density of alcohol is 0.78g/mL
-    return standard
 
 def fileForm(bar_name):
     bar_no_special = []
@@ -51,17 +46,26 @@ def valueErrorCheck(prompt):
             value = float(input(prompt))
             break
         except ValueError: 
-            print ("Must be a number, please try again.\n")
+            print("Must be a number, please try again.\n")
             continue
     return value
 
 def confirm():
     answer = ""
     while answer != ("yes" or "no"):
-        answer = str.lower(input("Enter 'yes' to confirm, or 'no' to cancel: "))
-        if answer == "yes": return True
-        elif answer == "no": return False
+        answer = str.lower(input(
+            "Enter 'yes' to confirm, or 'no' to cancel: "))
+        if answer == "yes":
+            return True
+        elif answer == "no":
+            return False
         else: invalidEntry()
+
+def standardCalc(alcpercent, vol): #unused as of now
+    standard = round(((alcpercent/100 * vol)/(10/0.78)), 2)
+    #10g is the standard drink in Australia 
+    #and the density of alcohol is 0.78g/mL
+    return standard
 
 def serveSize(serve): #unused as of now
     match serve:

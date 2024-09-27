@@ -1,11 +1,13 @@
-import json, os
+import json 
+import os
 from classes.bar import Bar
 from classes.stock import Beer, Wine, Spirit
-from functions.basic import valueErrorCheck, confirm, exitMessage, invalidEntry
+from functions.basic import valueErrorCheck, confirm, \
+                            exitMessage, invalidEntry
+
 
 def saveFile(bar):
     barname = bar.get_name()
-
     #info save
     try: os.mkdir(f"data/{barname}")
     except FileExistsError: pass
@@ -16,7 +18,6 @@ def saveFile(bar):
         }
     with open(f"data/{barname}/{barname}_info.json", "w") as json_file:
         json.dump(bar_info, json_file, indent=4)
-
     #menu save
     item_dict = []
     for item in bar.get_items():
@@ -51,7 +52,8 @@ def saveFile(bar):
         item_dict.append(item_json)
     with open(f"data/{barname}/{barname}_menu.json", "w") as json_file:
         json.dump(item_dict, json_file, indent=4)
-    print ("Bar menu updated.")
+    print("Bar menu updated.")
+
 
 def loadInfo(barname):
     try:
@@ -66,23 +68,26 @@ def loadInfo(barname):
         print("\nBar not on file, do you want to add a new bar?")
         approve = confirm()
         if approve:
-            print ("\nWhat does your bar use as a standard beer and wine serve?")
-            
+            print("\nWhat does your bar use as \
+                  a standard beer and wine serve?")
             x = 0
             while x == 0:
-                standard_beer_serve = input("Choose one of pot, schooner, pint or stein: ")
+                standard_beer_serve = input(
+                    "Choose one of pot, schooner, pint or stein: ")
                 match standard_beer_serve:
                     case "pot": break
                     case "schooner": break
                     case "pint": break
                     case "stein": break
                     case _: invalidEntry
-            standard_wine_serve = int(valueErrorCheck("Volume of a standard wine glass (in mL): "))
+            standard_wine_serve = int(valueErrorCheck(
+                "Volume of a standard wine glass (in mL): "))
             return Bar(barname, standard_beer_serve, standard_wine_serve)
         else:
             print()
             exitMessage()
             exit()
+
 
 def loadMenu(bar):
     barname = bar.get_name()

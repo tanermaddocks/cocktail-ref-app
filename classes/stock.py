@@ -1,3 +1,5 @@
+from functions.basic import serveSize
+
 class Beverage:
     #contructor
     def __init__ (self, code, name, alc, cost) -> None:
@@ -10,27 +12,40 @@ class Beverage:
 
     def get_item_code(self):
         return self.code
+    
     def get_item_name(self):
         return self.name
+    
     def get_item_alc(self):
         return self.alc
+    
     def get_item_cost(self):
         return self.cost
+    
     def get_item_type(self):
         return self.type
+        
     def get_item_serve(self):
         return self.serve
 
-class Beer (Beverage):
+
+class Beer(Beverage):
     #constructor
     def __init__(self, code, name, alc, cost, serve):
         super().__init__(code, name, alc, cost)
         self.type = "beer"
         self.serve = serve
+    
     def __str__(self) -> str:
-        return f"{self.code} -> {self.name}\nType: {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve} glass"
+        return f"{self.code} -> {self.name}\n\
+                Type: {self.type}\nAlc/vol: {self.alc}%\n\
+                Cost: ${self.cost}0 for a {self.serve} glass"
+    
+    def get_beer_vol(self):
+        return serveSize(self.serve)
 
-class Wine (Beverage):
+
+class Wine(Beverage):
     #constructor
     def __init__(self, code, name, alc, cost, serve):
         super().__init__(code, name, alc, cost)
@@ -38,9 +53,12 @@ class Wine (Beverage):
         self.serve = serve
 
     def __str__(self) -> str:
-        return f"{self.code} -> {self.name}\nType: {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve}mL glass"
+        return f"{self.code} -> {self.name}\n\
+                Type: {self.type}\nAlc/vol: {self.alc}%\n\
+                Cost: ${self.cost}0 for a {self.serve}mL glass"
 
-class Spirit (Beverage):
+
+class Spirit(Beverage):
     #constructor
     def __init__ (self, code, name, alc, cost, subtype):
         super().__init__(code, name, alc, cost)
@@ -49,7 +67,9 @@ class Spirit (Beverage):
         self.serve = 30
 
     def __str__(self) -> str:
-        return f"{self.code} -> {self.name}\nType: {self.subtype} {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve}mL nip"
+        return f"{self.code} -> {self.name}\n\
+                Type: {self.subtype} {self.type}\nAlc/vol: {self.alc}%\n\
+                Cost: ${self.cost}0 for a {self.serve}mL nip"
     
     def get_item_subtype(self):
         return self.subtype

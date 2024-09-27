@@ -1,5 +1,3 @@
-#Bar class is where items are stored, otherwise gives the name in an dictionary.
-
 from functions.basic import capitalFullString, invalidEntry, valueErrorCheck
 
 class Bar:
@@ -34,29 +32,32 @@ class Bar:
         self.items.append(new_item)
 
     def search_item(self, bar):
-        identify_target = str.lower(input("Seearch item by code or by name? "))
+        identify_target = str.lower(input(
+            "Seearch item by code or by name? "))
         if identify_target != ("code") and identify_target != ("name"):
             return invalidEntry()
         prompt = f"Enter the {identify_target} of the item: "
-
         #find item code and name
-        if identify_target == "code": target = format(int(valueErrorCheck(prompt)), "06d")
-        elif identify_target == "name": target = capitalFullString(input(prompt))
+        if identify_target == "code": 
+            target = format(int(valueErrorCheck(prompt)), "06d")
+        elif identify_target == "name": 
+            target = capitalFullString(input(prompt))
         all_items = bar.get_items()
         for item in all_items:
             if identify_target == "code":
                 if item.get_item_code() == target:
                     target_name = item.get_item_name()
-                    print (item)
+                    print(item)
                     break
             elif identify_target == "name": 
                 if item.get_item_name() == target:
                     target = item.get_item_code()
                     target_name = item.get_item_name()
-                    print (item)
+                    print(item)
                     break
         #if none found
-        else: return (print(f"No item in {bar}'s menu with that {identify_target}."), False)
+        else: 
+            return (f"No item in menu with that {identify_target}.", False)
         return (target, target_name)
 
     def delete_item(self, item_code):

@@ -3,7 +3,7 @@ from functions.item_function import *
 from functions.file_function import saveFile, loadInfo, loadMenu, exitMessage
 
 # App welcome
-print ("Cocktail Reference Application\n")
+print("Cocktail Reference Application\n")
 
 # Load in database
 barname = fileForm(str(input("Name of your bar: ")))
@@ -39,6 +39,6 @@ while choice != "e":
             # End loop to close application
             saveFile(bar)
         case _:
-            print ("Invalid input, try again.")
+            print("Invalid input, try again.")
         
 exitMessage()
