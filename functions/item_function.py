@@ -38,18 +38,19 @@ def addStock(bar):
         case "beer": 
             beer_serve = bar.get_beer_serve()
             #item cost
-            cost = valueErrorCheck(f"How much does {name} cost for a {beer_serve} glass? ")
+            cost = valueErrorCheck(f"How much does {name} cost for a {beer_serve}? ")
             new_item = Beer(code, name, alc, cost, beer_serve)
         #for wine
         case "wine": 
             wine_serve = bar.get_wine_serve()
             #item cost
             cost = valueErrorCheck(f"How much does {name} cost for a {wine_serve}mL glass? ")
-            new_item = Wine(code, name, alc, cost) 
+            new_item = Wine(code, name, alc, cost, wine_serve) 
         #for spirit
         case "spirit": 
+            subtype = str.lower(input(f"What kind of spirit is {name}? (vodka, tequila, rum, etc.): "))
             cost = valueErrorCheck(f"How much does {name} cost for a 30ml nip? ")
-            new_item = Spirit(code, name, alc, cost)    
+            new_item = Spirit(code, name, alc, cost, subtype)    
     
     #add item to bar dictionary
     print(f"\n{new_item}")
@@ -68,16 +69,16 @@ def searchItem(bar):
     if target_name == False: return
 
     choice = ""
-    while choice != "E":
-        choice = str.lower(input(f"\nWould you like to edit or delete {target_name}."))
-        
-    #confirm delete
-    print(f"Delete {target} -> {target_name} from {bar}'s menu?")
-    approve = confirm()
-    if approve:
-        bar.delete_item(target)
-        saveFile(bar)
-    else: print("Delete item cancelled.")
+    while choice != "e":
+        choice = str.lower(input(f"\nDelete {target_name} or enter E to exit."))
+        if choice == "delete":
+            #confirm delete
+            print(f"Delete {target} -> {target_name} from {bar}'s menu?")
+            approve = confirm()
+            if approve:
+                bar.delete_item(target)
+                saveFile(bar)
+            else: print("Delete item cancelled.")
 
 
 

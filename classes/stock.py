@@ -8,16 +8,6 @@ class Beverage:
         self.type = None
         self.serve = None
 
-    def __str__(self) -> str:
-        return f"#{self.code} -> {self.name} is a {self.type}, {self.alc}%, ${self.cost}0 for a {self.serve} glass."
-
-    # def add_stock (self, code, name, alc, cost, type):
-    #     self.code = code
-    #     self.name = name
-    #     self.alc = alc
-    #     self.cost = cost
-    #     self.type = type
-
     def get_item_code(self):
         return self.code
     def get_item_name(self):
@@ -37,17 +27,29 @@ class Beer (Beverage):
         super().__init__(code, name, alc, cost)
         self.type = "beer"
         self.serve = serve
+    def __str__(self) -> str:
+        return f"{self.code} -> {self.name}\nType: {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve} glass"
 
 class Wine (Beverage):
     #constructor
-    def __init__(self, code, name, alc, cost):
+    def __init__(self, code, name, alc, cost, serve):
         super().__init__(code, name, alc, cost)
         self.type = "wine"
-        self.serve = "glass"
+        self.serve = serve
+
+    def __str__(self) -> str:
+        return f"{self.code} -> {self.name}\nType: {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve}mL glass."
 
 class Spirit (Beverage):
     #constructor
-    def __init__ (self, code, name, alc, cost):
+    def __init__ (self, code, name, alc, cost, subtype):
         super().__init__(code, name, alc, cost)
+        self.subtype = subtype
         self.type = "spirit"
-        self.serve = "nip"
+        self.serve = 30
+
+    def __str__(self) -> str:
+        return f"{self.code} -> {self.name}\nType: {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve}mL."
+    
+    def get_item_subtype(self):
+        return self.subtype

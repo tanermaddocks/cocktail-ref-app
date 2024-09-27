@@ -21,14 +21,25 @@ def saveFile(bar):
     #menu save
     item_dict = []
     for item in bar.get_items():
-        item_json = {
-            "code": item.get_item_code(),
-            "name": item.get_item_name(),
-            "alc": item.get_item_alc(),
-            "cost": item.get_item_cost(),
-            "type": item.get_item_type(),
-            "serve": item.get_item_serve()
-        }
+        if item.get_item_type() == "beer" or item.get_item_type() == "wine":
+            item_json = {
+                "code": item.get_item_code(),
+                "name": item.get_item_name(),
+                "alc": item.get_item_alc(),
+                "cost": item.get_item_cost(),
+                "type": item.get_item_type(),
+                "serve": item.get_item_serve()
+            }
+        elif item.get_item_type() == "spirit":
+                {
+                "code": item.get_item_code(),
+                "name": item.get_item_name(),
+                "alc": item.get_item_alc(),
+                "cost": item.get_item_cost(),
+                "type": item.get_item_type(),
+                "stype": item.get_item_subtype(),
+                "serve": item.get_item_serve()
+            }
         item_dict.append(item_json)
     with open(f"data/{barname}/{barname}_menu.json", "w") as json_file:
         json.dump(item_dict, json_file, indent=4)
@@ -79,8 +90,10 @@ def loadMenu(bar):
                 serve = item["serve"]
                 match type:
                     case "beer": item = Beer(code, name, alc, cost, serve)
-                    case "wine": item = Wine(code, name,alc, cost)
-                    case "spirit": item = Spirit(code, name, alc, cost) 
+                    case "wine": item = Wine(code, name,alc, cost, serve)
+                    case "spirit": 
+                        subtype = item["stype"]
+                        item = Spirit(code, name, alc, cost, subtype) 
                     case "mix": pass #FOR COCKTAILS
                 bar.add_item(item)
     except FileNotFoundError: pass

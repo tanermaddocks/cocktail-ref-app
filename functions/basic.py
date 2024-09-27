@@ -8,9 +8,8 @@ def mainMenu():
     print ("2. Create cocktail.")
     print ("3. Search for a drink.")
     print ("4. View drink lists.")
-    print ("5. Remove item.")
     print ("E. Exit application.")
-    choice = str.upper(input ("\nEnter your choice here: "))
+    choice = str.lower(input ("\nEnter your choice here: "))
     print()
     return choice
 

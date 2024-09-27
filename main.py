@@ -13,7 +13,7 @@ loadMenu(bar)
 
 # Menu
 choice = ""
-while choice != "E":
+while choice != "e":
     choice = mainMenu()
     match choice:
         case "1": 
@@ -22,7 +22,8 @@ while choice != "E":
         case "2": 
             # Create mix
             pass           
-        case "3": 
+        case "3":
+            searchItem(bar)
             # Search for an item
                 # Search by name
                 # Search by code
@@ -35,11 +36,6 @@ while choice != "E":
                 # See sprits
                 # See mixes
                 # See all
-            pass
-        case "5":
-            removeItem(bar)
-            # Remove any item
-            pass
         case "E":
             # End loop to close application
             saveFile(bar)
