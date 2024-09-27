@@ -48,6 +48,7 @@ def addStock(bar):
             new_item = Wine(code, name, alc, cost) 
         #for spirit
         case "spirit": 
+            cost = valueErrorCheck(f"How much does {name} cost for a 30ml nip? ")
             new_item = Spirit(code, name, alc, cost)    
     
     #add item to bar dictionary
@@ -64,33 +65,11 @@ def addStock(bar):
 
 # Remove item
 def removeItem(bar):
-    identify_target = str.lower(input("Delete item by code or by name? "))
-    # if identify_target != ("code" or "name"):
-    #     return print("Invalid input, try again.")
-    if identify_target == "code": pass
-    elif identify_target == "name": pass
-    else: return invalidEntry
-    prompt = f"Enter {identify_target} of item to be removed: "
-
-    #find item code and name
-    if identify_target == "code": target = format(int(valueErrorCheck(prompt)), "06d")
-    elif identify_target == "name": target = capitalFullString(input(prompt))
-    all_items = bar.get_items()
-    for item in all_items:
-        if identify_target == "code":
-            if item.get_item_code() == target:
-                target_name = item.get_item_name()
-                break
-        elif identify_target == "name": 
-            if item.get_item_name() == target:
-                target = item.get_item_code()
-                target_name = item.get_item_name()
-                break
-    #if none found
-    else: return print(f"No item in {bar}'s menu with that {identify_target}.")
+    (target, target_name) = bar.search_item(bar)
+    if target_name == False: return
 
     #confirm delete
-    print(f"Delete {target_name} from {bar}'s menu?")
+    print(f"Delete {target} -> {target_name} from {bar}'s menu?")
     approve = confirm()
     if approve:
         bar.delete_item(target)
@@ -110,7 +89,7 @@ def listItem(bar):
     type = str.lower(input("Choose from beer, wine, spirit, mix or all: "))
     print()
     for item in all_items: 
-        printList = f"#{item.get_item_code()} -> {item.get_item_name()} - ${format(item.get_item_cost(), ".2f")}"
+        printList = f"#{item.get_item_code()} -> {item.get_item_name()} - ${item.get_item_cost()}0"
         match type:
             case "beer": 
                 #see beer
