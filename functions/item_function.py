@@ -61,13 +61,16 @@ def addStock(bar):
     else:
         print("Add item cancelled.")
 
-        
 
-# Remove item
-def removeItem(bar):
+# Search for an item
+def searchItem(bar):
     (target, target_name) = bar.search_item(bar)
     if target_name == False: return
 
+    choice = ""
+    while choice != "E":
+        choice = str.lower(input(f"\nWould you like to edit or delete {target_name}."))
+        
     #confirm delete
     print(f"Delete {target} -> {target_name} from {bar}'s menu?")
     approve = confirm()
@@ -77,9 +80,6 @@ def removeItem(bar):
     else: print("Delete item cancelled.")
 
 
-
-# Search item
-pass
 
 # List items
 def listItem(bar):

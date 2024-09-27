@@ -47,11 +47,13 @@ class Bar:
             if identify_target == "code":
                 if item.get_item_code() == target:
                     target_name = item.get_item_name()
+                    print (item)
                     break
             elif identify_target == "name": 
                 if item.get_item_name() == target:
                     target = item.get_item_code()
                     target_name = item.get_item_name()
+                    print (item)
                     break
         #if none found
         else: return (print(f"No item in {bar}'s menu with that {identify_target}."), False)
