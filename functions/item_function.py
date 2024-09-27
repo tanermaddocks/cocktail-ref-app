@@ -1,8 +1,7 @@
 import random
 
 from classes.stock import Beer, Wine, Spirit
-from functions.basic import capitalFullString, valueErrorCheck, confirm
-from functions.common_print import wrongChoice, invalidEntry
+from functions.basic import capitalFullString, valueErrorCheck, confirm, wrongChoice
 from functions.file_function import saveFile
 
 

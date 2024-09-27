@@ -1,8 +1,7 @@
 import json, os
 from classes.bar import Bar
 from classes.stock import Beer, Wine, Spirit
-from functions.basic import valueErrorCheck, confirm 
-from functions.common_print import exitMessage, invalidEntry
+from functions.basic import valueErrorCheck, confirm, exitMessage, invalidEntry
 
 def saveFile(bar):
     barname = bar.get_name()

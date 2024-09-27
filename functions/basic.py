@@ -1,6 +1,6 @@
 # Simple independent functions.
 
-from functions.common_print import invalidEntry
+from functions.basic import invalidEntry
 
 def mainMenu():
     print ("\nWhat would you like to do?\n")
@@ -12,6 +12,18 @@ def mainMenu():
     choice = str.lower(input ("\nEnter your choice here: "))
     print()
     return choice
+
+def exitMessage():
+    print ("Thank for for using the cocktail reference application!")
+
+def invalidEntry():
+    print ("Invalid entry, try again.")
+
+def wrongChoice(includeMix):
+    if includeMix:
+        print ("Invalid item type, choose from beer, wine spirit or cocktail.")
+    else:
+        print ("Invalid item type, choose from beer, wine or spirit.")
 
 def capitalFullString(string):
     string_list = string.split()
