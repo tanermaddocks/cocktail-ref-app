@@ -36,7 +36,7 @@ while choice != "e":
                 # See sprits
                 # See mixes
                 # See all
-        case "E":
+        case "e":
             # End loop to close application
             saveFile(bar)
         case _:

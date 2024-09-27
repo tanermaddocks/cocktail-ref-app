@@ -72,6 +72,7 @@ def loadInfo(barname):
             standard_wine_serve = int(valueErrorCheck("Volume of a standard wine glass (in mL): "))
             return Bar(barname, standard_beer_serve, standard_wine_serve)
         else:
+            print()
             exitMessage()
             exit()
 

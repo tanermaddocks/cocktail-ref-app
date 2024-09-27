@@ -1,5 +1,5 @@
 def exitMessage():
-    print ("\nThank for for using the cocktail reference application!")
+    print ("Thank for for using the cocktail reference application!")
 
 def invalidEntry():
     print ("Invalid entry, try again.")

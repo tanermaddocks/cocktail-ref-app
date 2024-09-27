@@ -38,7 +38,7 @@ class Wine (Beverage):
         self.serve = serve
 
     def __str__(self) -> str:
-        return f"{self.code} -> {self.name}\nType: {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve}mL glass."
+        return f"{self.code} -> {self.name}\nType: {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve}mL glass"
 
 class Spirit (Beverage):
     #constructor
@@ -49,7 +49,7 @@ class Spirit (Beverage):
         self.serve = 30
 
     def __str__(self) -> str:
-        return f"{self.code} -> {self.name}\nType: {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve}mL."
+        return f"{self.code} -> {self.name}\nType: {self.subtype} {self.type}\nAlc/vol: {self.alc}%\nCost: ${self.cost}0 for a {self.serve}mL"
     
     def get_item_subtype(self):
         return self.subtype
