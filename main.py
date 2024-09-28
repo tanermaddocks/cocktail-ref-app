@@ -1,6 +1,6 @@
-from functions.basic import mainMenu, fileForm, invalidEntry
+from functions.basic import mainMenu, fileForm, invalidEntry, exitMessage
 from functions.item_function import *
-from functions.file_function import saveFile, loadInfo, loadMenu, exitMessage
+from functions.file_function import saveFile, loadInfo, loadMenu
 
 # App welcome
 print("Cocktail Reference Application\n")

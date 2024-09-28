@@ -1,7 +1,7 @@
 import random
 from classes.stock import Beer, Wine, Spirit
 from functions.basic import capitalFullString, valueErrorCheck,\
-                            confirm, wrongChoice
+                            confirm, wrongChoice, costForm
 from functions.file_function import saveFile
 
 
@@ -38,24 +38,24 @@ def addStock(bar):
         case "beer": 
             beer_serve = bar.get_beer_serve()
             #item cost
-            cost = valueErrorCheck(f"How much does {name} cost 
-                                   for a {beer_serve}? ")
+            cost = valueErrorCheck(f"How much does {name} cost "
+                                   f"for a {beer_serve}? ")
             new_item = Beer(code, name, alc, cost, beer_serve)
         #for wine
         case "wine": 
             wine_serve = bar.get_wine_serve()
             #item cost
-            cost = valueErrorCheck(f"How much does {name} cost for 
-                                   a {wine_serve}mL glass? ")
+            cost = valueErrorCheck(f"How much does {name} cost for "
+                                   f"a {wine_serve}mL glass? ")
             new_item = Wine(code, name, alc, cost, wine_serve) 
         #for spirit
         case "spirit": 
-            subtype = str.lower(input(f"What kind of spirit is {name}?
-                                      \n - Vokda\n - Tequila\n = Rum\n - Gin
-                                      \n - Whiskey\n - Brandy\n - Liqueur
-                                      \nEnter one of the above options: "))
-            cost = valueErrorCheck(f"How much does {name} 
-                                   cost for a 30ml nip? ")
+            subtype = str.lower(input(f"What kind of spirit is {name}?"
+                                      "\n - Vokda\n - Tequila\n - Rum\n - Gin"
+                                      "\n - Whiskey\n - Brandy\n - Liqueur"
+                                      "\nEnter one of the above options: "))
+            cost = valueErrorCheck(f"How much does {name} "
+                                   f"cost for a 30ml nip? ")
             new_item = Spirit(code, name, alc, cost, subtype)    
     
     #add item to bar dictionary
@@ -68,6 +68,8 @@ def addStock(bar):
     else:
         print("Add item cancelled.")
 
+def addMix(bar):
+    pass
 
 # Search for an item
 def searchItem(bar):
@@ -75,8 +77,8 @@ def searchItem(bar):
     if target_name == False: return print(target)
     choice = ""
     while choice != "e":
-        choice = str.lower(input(f"\nEnter E to return to menu or \
-                                 enter D to delete {target_name}: "))
+        choice = str.lower(input(f"\nEnter E to return to menu or "
+                                 f"enter D to delete {target_name}: "))
         if choice == "d":
             #confirm delete
             print(f"Delete {target} -> {target_name} from {bar}'s menu?")
@@ -98,10 +100,10 @@ def listItem(bar):
     type = str.lower(input("Choose from beer, wine, spirit, mix or all: "))
     print()
     for item in all_items: 
-        printList = f"#{item.get_item_code()} -> {item.get_item_name()} \
-                    - ${item.get_item_cost()}0"
+        printList = (f" #{item.get_item_code()} -> {item.get_item_name()}"
+                     f" - ${costForm(item.get_item_cost())}")
         match type:
-            case "beer": 
+            case "beer":
                 #see beer
                 if item.get_item_type() == "beer": print(printList)
             case "wine":
