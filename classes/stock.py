@@ -68,7 +68,8 @@ class Spirit(Beverage):
 
     def __str__(self) -> str:
         return (f"\n#{self.code} -> {self.name}"
-                f"\nType: {self.subtype.capitalize()} {self.type}\nAlc/vol: {self.alc}%"
+                f"\nType: {self.subtype.capitalize()} {self.type}"
+                f"\nAlc/vol: {self.alc}%"
                 f"\nCost: ${costForm(self.cost)} for a {self.serve}mL nip")
     
     def get_item_subtype(self):

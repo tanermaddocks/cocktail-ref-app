@@ -5,7 +5,7 @@ import random
 def mainMenu():
     print("\nWhat would you like to do?\n")
     print("1. Add stock.")
-    print("2. Create cocktail.")
+    print("2. Create a mix.")
     print("3. Search for a drink.")
     print("4. View drink lists.")
     print("E. Exit application.")
@@ -44,7 +44,7 @@ def codeMaker(bar):
     while x == 0:
         code = format(random.randint(0, 9999), "06d")
         if code not in existing_codes: x += 1
-    return code
+    return f"#{code}"
 
 def fileForm(bar_name):
     bar_no_special = []

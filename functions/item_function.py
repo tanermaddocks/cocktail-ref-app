@@ -69,7 +69,8 @@ def addMix(bar):
 # Search for an item
 def searchItem(bar):
     (target, target_name) = bar.search_item(bar)
-    if target_name == False: return print(target)
+    if target_name == False:
+        return print(target)
     choice = ""
     while choice != "e":
         choice = str.lower(input(f"\nEnter E to return to menu or "

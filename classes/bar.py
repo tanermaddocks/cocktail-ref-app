@@ -32,24 +32,19 @@ class Bar:
         self.items.append(new_item)
 
     def search_item(self, bar):
-        identify_target = str.lower(input(
-            "Seearch item by code or by name? "))
-        if identify_target != ("code") and identify_target != ("name"):
-            return invalidEntry()
-        prompt = f"Enter the {identify_target} of the item: "
+        target = str(input(f"Enter the code or name of the item: "))
         #find item code and name
-        if identify_target == "code": 
-            target = format(int(valueErrorCheck(prompt)), "06d")
-        elif identify_target == "name": 
-            target = capitalFullString(input(prompt))
+        if target[0] == "0":
+            target == f"#{target}"
         all_items = bar.get_items()
         for item in all_items:
-            if identify_target == "code":
+            if target[0] == "#":
                 if item.get_item_code() == target:
                     target_name = item.get_item_name()
                     print(item)
                     break
-            elif identify_target == "name": 
+            else:
+                target = capitalFullString(target)
                 if item.get_item_name() == target:
                     target = item.get_item_code()
                     target_name = item.get_item_name()
@@ -57,7 +52,7 @@ class Bar:
                     break
         #if none found
         else: 
-            return (f"No item in menu with that {identify_target}.", False)
+            return (f"No item in menu with that code or name.", False)
         return (target, target_name)
 
     def delete_item(self, item_code):
