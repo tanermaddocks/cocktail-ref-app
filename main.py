@@ -1,4 +1,4 @@
-from functions.basic import mainMenu, fileForm
+from functions.basic import mainMenu, fileForm, invalidEntry
 from functions.item_function import *
 from functions.file_function import saveFile, loadInfo, loadMenu, exitMessage
 
@@ -8,6 +8,7 @@ print("Cocktail Reference Application\n")
 # Load in database
 barname = fileForm(str(input("Name of your bar: ")))
 bar = loadInfo(barname) #if file does not exist, new bar will be created.
+# Password check?
 loadMenu(bar)
 
 # Menu
@@ -20,7 +21,7 @@ while choice != "e":
             addStock(bar)
         case "2": 
             # Create mix
-            pass           
+            pass
         case "3":
             searchItem(bar)
             # Search for an item
@@ -39,6 +40,6 @@ while choice != "e":
             # End loop to close application
             saveFile(bar)
         case _:
-            print("Invalid input, try again.")
+            invalidEntry()
         
 exitMessage()

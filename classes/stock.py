@@ -1,4 +1,4 @@
-from functions.basic import serveSize
+from functions.basic import serveSize, costForm
 
 class Beverage:
     #contructor
@@ -39,7 +39,7 @@ class Beer(Beverage):
     def __str__(self) -> str:
         return f"{self.code} -> {self.name}\n\
                 Type: {self.type}\nAlc/vol: {self.alc}%\n\
-                Cost: ${self.cost}0 for a {self.serve} glass"
+                Cost: ${costForm(self.cost)} for a {self.serve} glass"
     
     def get_beer_vol(self):
         return serveSize(self.serve)
@@ -55,7 +55,7 @@ class Wine(Beverage):
     def __str__(self) -> str:
         return f"{self.code} -> {self.name}\n\
                 Type: {self.type}\nAlc/vol: {self.alc}%\n\
-                Cost: ${self.cost}0 for a {self.serve}mL glass"
+                Cost: ${costForm(self.cost)} for a {self.serve}mL glass"
 
 
 class Spirit(Beverage):
@@ -69,7 +69,7 @@ class Spirit(Beverage):
     def __str__(self) -> str:
         return f"{self.code} -> {self.name}\n\
                 Type: {self.subtype} {self.type}\nAlc/vol: {self.alc}%\n\
-                Cost: ${self.cost}0 for a {self.serve}mL nip"
+                Cost: ${costForm(self.cost)} for a {self.serve}mL nip"
     
     def get_item_subtype(self):
         return self.subtype

@@ -50,6 +50,9 @@ def valueErrorCheck(prompt):
             continue
     return value
 
+def costForm(cost):
+    return "{:.2f}".format(cost)
+
 def confirm():
     answer = ""
     while answer != ("yes" or "no"):
