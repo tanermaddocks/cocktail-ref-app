@@ -1,22 +1,15 @@
 import random
 from classes.stock import Beer, Wine, Spirit
 from functions.basic import capitalFullString, valueErrorCheck,\
-                            confirm, wrongChoice, costForm
+                            confirm, wrongChoice, costForm, codeMaker
 from functions.file_function import saveFile
 
 
 # Add item
 def addStock(bar):
     #generate item code for new item
-    all_items = bar.get_items()
-    #check code does not already exist
-    existing_code = []
-    for item in all_items:
-        existing_code.append(item.get_item_code())
-    x = 0
-    while x == 0:
-        code = format(random.randint(0, 9999), "06d")
-        if code not in existing_code: x += 1
+    code = codeMaker(bar)
+
     #ask for item type being added
     item_type = str.lower(input(
         "What item do you wish to add; beer, wine or spirit? "))
@@ -68,8 +61,10 @@ def addStock(bar):
     else:
         print("Add item cancelled.")
 
+
 def addMix(bar):
     pass
+
 
 # Search for an item
 def searchItem(bar):
@@ -78,7 +73,8 @@ def searchItem(bar):
     choice = ""
     while choice != "e":
         choice = str.lower(input(f"\nEnter E to return to menu or "
-                                 f"enter D to delete {target_name}: "))
+                                 f"enter D to delete {target_name} "
+                                 f"from {bar}'s menu: "))
         if choice == "d":
             #confirm delete
             print(f"Delete {target} -> {target_name} from {bar}'s menu?")

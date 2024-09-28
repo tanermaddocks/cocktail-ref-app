@@ -1,4 +1,6 @@
-# Simple independent functions.
+# Simple functions.
+
+import random
 
 def mainMenu():
     print("\nWhat would you like to do?\n")
@@ -30,6 +32,19 @@ def capitalFullString(string):
         string_list_cap.append(word.capitalize())
     string_cap = " ".join(string_list_cap)
     return string_cap
+
+def codeMaker(bar):
+    #generate item code
+    all_items = bar.get_items()
+    #check code does not already exist
+    existing_codes = []
+    for item in all_items:
+        existing_codes.append(item.get_item_code())
+    x = 0
+    while x == 0:
+        code = format(random.randint(0, 9999), "06d")
+        if code not in existing_codes: x += 1
+    return code
 
 def fileForm(bar_name):
     bar_no_special = []

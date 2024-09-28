@@ -37,8 +37,8 @@ class Beer(Beverage):
         self.serve = serve
     
     def __str__(self) -> str:
-        return (f"{self.code} -> {self.name}"
-                f"\nType: {self.type}\nAlc/vol: {self.alc}%"
+        return (f"\n#{self.code} -> {self.name}"
+                f"\nType: {self.type.capitalize()}\nAlc/vol: {self.alc}%"
                 f"\nCost: ${costForm(self.cost)} for a {self.serve} glass")
     
     def get_beer_vol(self):
@@ -53,8 +53,8 @@ class Wine(Beverage):
         self.serve = serve
 
     def __str__(self) -> str:
-        return (f"{self.code} -> {self.name}"
-                f"\nType: {self.type}\nAlc/vol: {self.alc}%"
+        return (f"\n#{self.code} -> {self.name}"
+                f"\nType: {self.type.capitalize()}\nAlc/vol: {self.alc}%"
                 f"\nCost: ${costForm(self.cost)} for a {self.serve}mL glass")
 
 
@@ -67,8 +67,8 @@ class Spirit(Beverage):
         self.serve = 30
 
     def __str__(self) -> str:
-        return (f"{self.code} -> {self.name}"
-                f"\nType: {self.subtype} {self.type}\nAlc/vol: {self.alc}%"
+        return (f"\n#{self.code} -> {self.name}"
+                f"\nType: {self.subtype.capitalize()} {self.type}\nAlc/vol: {self.alc}%"
                 f"\nCost: ${costForm(self.cost)} for a {self.serve}mL nip")
     
     def get_item_subtype(self):

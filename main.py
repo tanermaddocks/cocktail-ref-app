@@ -1,7 +1,6 @@
 from functions.basic import mainMenu, fileForm, invalidEntry, exitMessage
 from functions.item_function import *
 from functions.file_function import saveFile, loadInfo, loadMenu
-
 # App welcome
 print("Cocktail Reference Application\n")
 
@@ -21,7 +20,7 @@ while choice != "e":
             addStock(bar)
         case "2": 
             # Create mix
-            pass
+            addMix(bar)
         case "3":
             searchItem(bar)
             # Search for an item
