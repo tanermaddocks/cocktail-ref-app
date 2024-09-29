@@ -33,27 +33,21 @@ class Bar:
 
     def search_item(self, bar):
         target = str(input(f"Enter the code or name of the item: "))
-        #find item code and name
+        # find item code and name
         if target[0] == "0":
             target == f"#{target}"
         all_items = bar.get_items()
         for item in all_items:
             if target[0] == "#":
                 if item.get_item_code() == target:
-                    target_name = item.get_item_name()
-                    print(item)
-                    break
+                    return item
             else:
                 target = capitalFullString(target)
                 if item.get_item_name() == target:
-                    target = item.get_item_code()
-                    target_name = item.get_item_name()
-                    print(item)
-                    break
-        #if none found
+                    return item
+        # if none found
         else: 
-            return (f"No item in menu with that code or name.", False)
-        return (target, target_name)
+            return False
 
     def delete_item(self, item_code):
         new_menu = []

@@ -1,7 +1,7 @@
-from functions.basic import serveSize, costForm
+from functions.basic import costForm, standardCalc, beerSize
 
 class Beverage:
-    #contructor
+    # contructor
     def __init__ (self, code, name, alc, cost) -> None:
         self.code = code
         self.name = name
@@ -30,7 +30,7 @@ class Beverage:
 
 
 class Beer(Beverage):
-    #constructor
+    # constructor
     def __init__(self, code, name, alc, cost, serve):
         super().__init__(code, name, alc, cost)
         self.type = "beer"
@@ -38,15 +38,15 @@ class Beer(Beverage):
     
     def __str__(self) -> str:
         return (f"\n#{self.code} -> {self.name}"
-                f"\nType: {self.type.capitalize()}\nAlc/vol: {self.alc}%"
-                f"\nCost: ${costForm(self.cost)} for a {self.serve} glass")
-    
-    def get_beer_vol(self):
-        return serveSize(self.serve)
+                f"\nType: {self.type.capitalize()}"
+                f"\nServe: {self.serve} ({beerSize(self.serve)}mL)"
+                f"\nAlc/vol: {self.alc}% "
+                f"({standardCalc(self.alc, beerSize(self.serve))} standards)"
+                f"\nCost: ${costForm(self.cost)})")
 
 
 class Wine(Beverage):
-    #constructor
+    # constructor
     def __init__(self, code, name, alc, cost, serve):
         super().__init__(code, name, alc, cost)
         self.type = "wine"
@@ -54,12 +54,14 @@ class Wine(Beverage):
 
     def __str__(self) -> str:
         return (f"\n#{self.code} -> {self.name}"
-                f"\nType: {self.type.capitalize()}\nAlc/vol: {self.alc}%"
-                f"\nCost: ${costForm(self.cost)} for a {self.serve}mL glass")
+                f"\nType: {self.type.capitalize()}"
+                f"\nServe: {self.serve}mL glass\nAlc/vol: {self.alc}% "
+                f"({standardCalc(self.alc, self.serve)} standards)"
+                f"\nCost: ${costForm(self.cost)}")
 
 
 class Spirit(Beverage):
-    #constructor
+    # constructor
     def __init__ (self, code, name, alc, cost, subtype):
         super().__init__(code, name, alc, cost)
         self.subtype = subtype
@@ -69,8 +71,9 @@ class Spirit(Beverage):
     def __str__(self) -> str:
         return (f"\n#{self.code} -> {self.name}"
                 f"\nType: {self.subtype.capitalize()} {self.type}"
-                f"\nAlc/vol: {self.alc}%"
-                f"\nCost: ${costForm(self.cost)} for a {self.serve}mL nip")
+                f"\nServe: {self.serve}mL nip\nAlc/vol: {self.alc}% "
+                f"({standardCalc(self.alc, self.serve)} standards)"
+                f"\nCost: ${costForm(self.cost)}")
     
     def get_item_subtype(self):
         return self.subtype

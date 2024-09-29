@@ -34,9 +34,9 @@ def capitalFullString(string):
     return string_cap
 
 def codeMaker(bar):
-    #generate item code
+    # generate item code
     all_items = bar.get_items()
-    #check code does not already exist
+    # check code does not already exist
     existing_codes = []
     for item in all_items:
         existing_codes.append(item.get_item_code())
@@ -70,7 +70,7 @@ def costForm(cost):
 
 def confirm():
     answer = ""
-    while answer != ("yes" or "no"):
+    while answer != "yes" and answer != "no":
         answer = str.lower(input(
             "Enter 'yes' to confirm, or 'no' to cancel: "))
         if answer == "yes":
@@ -79,13 +79,13 @@ def confirm():
             return False
         else: invalidEntry()
 
-def standardCalc(alcpercent, vol): #unused as of now
+def standardCalc(alcpercent, vol): # unused as of now
     standard = round(((alcpercent/100 * vol)/(10/0.78)), 2)
-    #10g is the standard drink in Australia 
-    #and the density of alcohol is 0.78g/mL
+    # 10g is the standard drink in Australia 
+    # and the density of alcohol is 0.78g/mL
     return standard
 
-def serveSize(serve): #unused as of now
+def beerSize(serve): # unused as of now
     match serve:
         case "pot": serve_mL = 285
         case "schooner": serve_mL = 425
