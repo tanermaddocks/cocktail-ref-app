@@ -71,6 +71,7 @@ def addStock(bar):
 # Add mix
 def addMix(bar):
     print("\nADDING NEW MIX")
+    date_added = str(datetime.date.today())
     mix_code = codeMaker(bar)
     mix_name = capitalFullString(input("What is the name of your mix? "))
     # ask for drink 1 through to drink x
@@ -118,7 +119,7 @@ def addMix(bar):
     mix_cost = valueErrorCheck("What is the new cost? ")
 
     # print new combined item (include ingredients)
-    new_mix = Mix(mix_code, mix_name, mix_alc, mix_cost, mix_recipe)
+    new_mix = Mix(date_added, mix_code, mix_name, mix_alc, mix_cost, mix_recipe)
 
     # add item to bar dictionary
     print(f"\n{new_mix}")

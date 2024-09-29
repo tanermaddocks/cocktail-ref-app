@@ -49,7 +49,7 @@ class Beer(Beverage):
                 f"\n Serve: {self.serve} ({beerSize(self.serve)}mL)"
                 f"\n Alc/vol: {self.alc}% "
                 f"({round(standardCalc(self.alc, beerSize(self.serve)), 2)} "
-                f"standards)\n Cost: ${costForm(self.cost)})"
+                f"standards)\n Cost: ${costForm(self.cost)}"
                 f"\n Date added: {self.date}")
 
 
