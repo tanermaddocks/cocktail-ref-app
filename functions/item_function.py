@@ -1,4 +1,4 @@
-import random
+import datetime
 from classes.stock import Beer, Wine, Spirit, Mix
 from functions.basic import capitalFullString, valueErrorCheck,\
                             confirm, wrongChoice, costForm, codeMaker, \
@@ -9,9 +9,13 @@ from functions.file_function import saveFile
 # Add stock
 def addStock(bar):
     print("\nADDING NEW STOCK")
+    # date added
+    
+    date = str(datetime.date.today())
+
     # generate item code for new item
     code = codeMaker(bar)
-
+ 
     # ask for item type being added
     item_type = str.lower(input(
         "What item do you wish to add; beer, wine or spirit? "))
@@ -35,14 +39,14 @@ def addStock(bar):
             #item cost
             cost = valueErrorCheck(f"How much does {name} cost "
                                    f"for a {beer_serve}? ")
-            new_item = Beer(code, name, alc, cost, beer_serve)
+            new_item = Beer(date, code, name, alc, cost, beer_serve)
         # for wine
         case "wine": 
             wine_serve = bar.get_wine_serve()
             #item cost
             cost = valueErrorCheck(f"How much does {name} cost for "
                                    f"a {wine_serve}mL glass? ")
-            new_item = Wine(code, name, alc, cost, wine_serve) 
+            new_item = Wine(date, code, name, alc, cost, wine_serve) 
         # for spirit
         case "spirit": 
             subtype = str.lower(input(f"What kind of spirit is {name}?"
@@ -51,7 +55,7 @@ def addStock(bar):
                                       "\nEnter one of the above options: "))
             cost = valueErrorCheck(f"How much does {name} "
                                    f"cost for a 30ml nip? ")
-            new_item = Spirit(code, name, alc, cost, subtype)    
+            new_item = Spirit(date, code, name, alc, cost, subtype)    
     
     # add item to bar dictionary
     print(f"\n{new_item}")
@@ -179,7 +183,7 @@ def listItem(bar):
                 if item.get_item_type() == "spirit": print(printList)
             case "mix": 
                 # see mix
-                pass
+                if item.get_item_type() == "mix": print(printList)
             case "all":
                 # see all
                 print(printList)

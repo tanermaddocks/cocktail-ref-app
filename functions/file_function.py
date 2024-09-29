@@ -9,8 +9,14 @@ from functions.basic import valueErrorCheck, confirm, \
 def saveFile(bar):
     barname = bar.get_name()
     #info save
-    try: os.mkdir(f"data/{barname}")
-    except FileExistsError: pass
+    try: 
+        os.mkdir(f"data")
+    except FileExistsError: 
+        pass
+    try: 
+        os.mkdir(f"data/{barname}")
+    except FileExistsError: 
+        pass
     bar_info = {
         "barname": bar.get_name(),
         "beerserve": bar.get_beer_serve(),
@@ -23,6 +29,7 @@ def saveFile(bar):
     for item in bar.get_items():
         if item.get_item_type() == "beer":
             item_json = {
+                "date": item.get_item_date(),
                 "code": item.get_item_code(),
                 "name": item.get_item_name(),
                 "alc": item.get_item_alc(),
@@ -33,6 +40,7 @@ def saveFile(bar):
             }
         elif item.get_item_type() == "wine":
             item_json = {
+                "date": item.get_item_date(),
                 "code": item.get_item_code(),
                 "name": item.get_item_name(),
                 "alc": item.get_item_alc(),
@@ -42,6 +50,7 @@ def saveFile(bar):
             }
         elif item.get_item_type() == "spirit":
             item_json = {
+                "date": item.get_item_date(),
                 "code": item.get_item_code(),
                 "name": item.get_item_name(),
                 "alc": item.get_item_alc(),
@@ -52,6 +61,7 @@ def saveFile(bar):
             }
         elif item.get_item_type() == "mix":
             item_json = {
+                "date": item.get_item_date(),
                 "code": item.get_item_code(),
                 "name": item.get_item_name(),
                 "alc": item.get_item_alc(),
@@ -78,8 +88,8 @@ def loadInfo(barname):
         print("\nBar not on file, do you want to add a new bar?")
         approve = confirm()
         if approve:
-            print("\nWhat does your bar use as \
-                  a standard beer and wine serve?")
+            print("\nWhat does your bar use as "
+                  "a standard beer and wine serve?")
             x = 0
             while x == 0:
                 standard_beer_serve = input(
@@ -106,6 +116,7 @@ def loadMenu(bar):
         with open(f"data/{barname}/{barname}_menu.json", "r") as json_file:
             item_dict = json.load(json_file)
             for item in item_dict:
+                date = item["date"]
                 code = item["code"]
                 name = item["name"] 
                 alc = item["alc"]
@@ -114,16 +125,16 @@ def loadMenu(bar):
                 match type:
                     case "beer":
                         serve = item["serve"]
-                        item = Beer(code, name, alc, cost, serve)
+                        item = Beer(date, code, name, alc, cost, serve)
                     case "wine":
                         serve = item["serve"]
-                        item = Wine(code, name, alc, cost, serve)
+                        item = Wine(date, code, name, alc, cost, serve)
                     case "spirit": 
                         subtype = item["stype"]
-                        item = Spirit(code, name, alc, cost, subtype) 
+                        item = Spirit(date, code, name, alc, cost, subtype) 
                     case "mix": 
                         recipe = item["recipe"]
-                        item = Mix(code, name, alc, cost, recipe)
+                        item = Mix(date, code, name, alc, cost, recipe)
                 bar.add_item(item)
     except FileNotFoundError: pass
     
