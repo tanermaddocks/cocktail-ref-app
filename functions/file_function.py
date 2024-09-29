@@ -1,7 +1,7 @@
 import json 
 import os
 from classes.bar import Bar
-from classes.stock import Beer, Wine, Spirit
+from classes.stock import Beer, Wine, Spirit, Mix
 from functions.basic import valueErrorCheck, confirm, \
                             exitMessage, invalidEntry
 
@@ -28,7 +28,8 @@ def saveFile(bar):
                 "alc": item.get_item_alc(),
                 "cost": item.get_item_cost(),
                 "type": item.get_item_type(),
-                "serve": item.get_item_serve()
+                "serve": item.get_item_serve(),
+                "mixed": item.is_mixed()
             }
         elif item.get_item_type() == "wine":
             item_json = {
@@ -37,7 +38,7 @@ def saveFile(bar):
                 "alc": item.get_item_alc(),
                 "cost": item.get_item_cost(),
                 "type": item.get_item_type(),
-                "serve": item.get_item_serve()
+                "serve": item.get_item_serve(),
             }
         elif item.get_item_type() == "spirit":
             item_json = {
@@ -48,6 +49,15 @@ def saveFile(bar):
                 "type": item.get_item_type(),
                 "stype": item.get_item_subtype(),
                 "serve": item.get_item_serve()
+            }
+        elif item.get_item_type() == "mix":
+            item_json = {
+                "code": item.get_item_code(),
+                "name": item.get_item_name(),
+                "alc": item.get_item_alc(),
+                "cost": item.get_item_cost(),
+                "type": item.get_item_type(),
+                "recipe": item.get_mix_recipe()
             }
         item_dict.append(item_json)
     with open(f"data/{barname}/{barname}_menu.json", "w") as json_file:
@@ -101,14 +111,19 @@ def loadMenu(bar):
                 alc = item["alc"]
                 cost = item["cost"]
                 type = item["type"]
-                serve = item["serve"]
                 match type:
-                    case "beer": item = Beer(code, name, alc, cost, serve)
-                    case "wine": item = Wine(code, name,alc, cost, serve)
+                    case "beer":
+                        serve = item["serve"]
+                        item = Beer(code, name, alc, cost, serve)
+                    case "wine":
+                        serve = item["serve"]
+                        item = Wine(code, name, alc, cost, serve)
                     case "spirit": 
                         subtype = item["stype"]
                         item = Spirit(code, name, alc, cost, subtype) 
-                    case "mix": pass #FOR COCKTAILS
+                    case "mix": 
+                        recipe = item["recipe"]
+                        item = Mix(code, name, alc, cost, recipe)
                 bar.add_item(item)
     except FileNotFoundError: pass
     

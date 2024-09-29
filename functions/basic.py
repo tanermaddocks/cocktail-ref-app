@@ -91,3 +91,9 @@ def beerSize(serve): # unused as of now
         case "pint": serve_mL = 570
         case "stein": serve_mL = 1000
     return serve_mL
+
+def recipePrint(recipe_dict):
+    print_list = []
+    for item in recipe_dict:
+        print_list.append(f"{item[0]}mL of {item[1]}")
+    return print_list

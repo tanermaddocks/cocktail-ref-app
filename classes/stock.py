@@ -1,4 +1,5 @@
-from functions.basic import costForm, standardCalc, beerSize
+from typing import Any
+from functions.basic import costForm, standardCalc, beerSize, recipePrint
 
 class Beverage:
     # constructor
@@ -39,12 +40,12 @@ class Beer(Beverage):
         self.serve = serve
     
     def __str__(self) -> str:
-        return (f"\n{self.code} -> {self.name}"
-                f"\nType: {self.type.capitalize()}"
-                f"\nServe: {self.serve} ({beerSize(self.serve)}mL)"
-                f"\nAlc/vol: {self.alc}% "
+        return (f"\n {self.code} -> {self.name}"
+                f"\n Type: {self.type.capitalize()}"
+                f"\n Serve: {self.serve} ({beerSize(self.serve)}mL)"
+                f"\n Alc/vol: {self.alc}% "
                 f"({standardCalc(self.alc, round(beerSize(self.serve), 2))} "
-                f"standards)\nCost: ${costForm(self.cost)})")
+                f"standards)\n Cost: ${costForm(self.cost)})")
 
 
 class Wine(Beverage):
@@ -54,11 +55,11 @@ class Wine(Beverage):
         self.serve = serve
 
     def __str__(self) -> str:
-        return (f"\n{self.code} -> {self.name}"
-                f"\nType: {self.type.capitalize()}"
-                f"\nServe: {self.serve}mL glass\nAlc/vol: {self.alc}% "
+        return (f"\n {self.code} -> {self.name}"
+                f"\n Type: {self.type.capitalize()}"
+                f"\n Serve: {self.serve}mL glass\n Alc/vol: {self.alc}% "
                 f"({round(standardCalc(self.alc, self.serve), 2)} standards)"
-                f"\nCost: ${costForm(self.cost)}")
+                f"\n Cost: ${costForm(self.cost)}")
 
 
 class Spirit(Beverage):
@@ -69,15 +70,16 @@ class Spirit(Beverage):
         self.serve = 30
 
     def __str__(self) -> str:
-        return (f"\n{self.code} -> {self.name}"
-                f"\nType: {self.subtype.capitalize()} {self.type}"
-                f"\nServe: {self.serve}mL nip\nAlc/vol: {self.alc}% "
+        return (f"\n {self.code} -> {self.name}"
+                f"\n Type: {self.subtype.capitalize()} {self.type}"
+                f"\n Serve: {self.serve}mL nip\n Alc/vol: {self.alc}% "
                 f"({round(standardCalc(self.alc, self.serve), 2)} standards)"
-                f"\nCost: ${costForm(self.cost)}")
+                f"\n Cost: ${costForm(self.cost)}")
     
     def get_item_subtype(self):
         return self.subtype
-    
+
+
 class Mix(Beverage):
     def __init__(self, code, name, alc, cost, recipe):
         super().__init__(code, name, alc, cost)
@@ -86,4 +88,11 @@ class Mix(Beverage):
         self.recipe = recipe
 
     def __str__(self) -> str:
-        return f"{self.name}"
+        return (f" {self.code} -> {self.name}"
+                f"\n Type: {self.type.capitalize()}"
+                f"\n Recipe: {recipePrint(self.recipe)}"
+                f"\n Standard drinks: {round(self.alc, 2)}"
+                f"\n Cost: ${costForm(self.cost)}")
+    
+    def get_mix_recipe(self):
+        return self.recipe

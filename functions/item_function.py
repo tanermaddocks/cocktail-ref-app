@@ -101,14 +101,12 @@ def addMix(bar):
     mix_alc = 0
     total_cost = 0
     mix_recipe = []
-    for ingredient in recipe:
-        mix_recipe.append({
-            "ing_vol": ingredient[0],
-            "ing_name": ingredient[1]
-        })
+    for ingr in recipe:
+        mix_recipe.append((ingr[0], ingr[1]))
+        print(f" - {ingr[0]}mL of {ingr[1]}")
         # add together the standard drinks of each item
-        mix_alc += standardCalc(ingredient[2], ingredient[0])
-        total_cost += ingredient[3]
+        mix_alc += standardCalc(ingr[2], ingr[0])
+        total_cost += ingr[3]
     print(f"Contains {round(mix_alc, 2)} standards.\n"
             f"\nA {mix_name} would usually cost ${costForm(total_cost)}.")
     
