@@ -1,12 +1,14 @@
 import random
-from classes.stock import Beer, Wine, Spirit
+from classes.stock import Beer, Wine, Spirit, Mix
 from functions.basic import capitalFullString, valueErrorCheck,\
-                            confirm, wrongChoice, costForm, codeMaker
+                            confirm, wrongChoice, costForm, codeMaker, \
+                            standardCalc
 from functions.file_function import saveFile
 
 
-# Add item
+# Add stock
 def addStock(bar):
+    print("\nADDING NEW STOCK")
     # generate item code for new item
     code = codeMaker(bar)
 
@@ -62,34 +64,76 @@ def addStock(bar):
         print("Add item cancelled.")
 
 
+# Add mix
 def addMix(bar):
-    # ask for drink 1 through to drink x (while func)
+    print("\nADDING NEW MIX")
+    mix_code = codeMaker(bar)
+    mix_name = capitalFullString(input("What is the name of your mix? "))
+    # ask for drink 1 through to drink x
+    print(f"Enter your the ingredients of a {mix_name} "
+          "and the quantity (in mL) of each ingredient.\n")
     recipe = []
-    x = 1
-    while x != 0:
-        ingredient = bar.search_item(bar)
+    x = 0
+    while x != 1:
+        ingredient = bar.search_item(
+            bar, f"Enter the name or code of a stock item: ")
         if not ingredient:
             print ("No item in menu with that code or name.")
+        elif ingredient.is_mixed():
+            print ("Can not have a mix as an ingredient for a mix.")
         else:
-            recipe.append(ingredient)
-        print("Add another ingredient?")
+            ing_vol = int(valueErrorCheck(
+                f"How many mL of {ingredient.get_item_name()} are in "
+                f"a {mix_name}? "))               # volm [0]
+            ing_name = ingredient.get_item_name() # name [1]
+            ing_alc = ingredient.get_item_alc()   # alc% [2]
+            ing_cost = ingredient.get_item_cost() # cost [3]
+            recipe.append([ing_vol, ing_name, ing_alc, ing_cost])
+            print (f"{ing_vol}mL of {ing_name} added.")
+        print("\nAdd another ingredient?")
         answer = confirm()
         if not answer:
-            break
+            x += 1
+    if mix_name[0] in "AEIOU":
+        print(f"\nRecipe for an {mix_name}:")
+    else:
+        print(f"Recipe for a {mix_name}:")
+    mix_alc = 0
+    total_cost = 0
+    mix_recipe = []
     for ingredient in recipe:
-        print(ingredient.get_item_name())
+        mix_recipe.append({
+            "ing_vol": ingredient[0],
+            "ing_name": ingredient[1]
+        })
+        # add together the standard drinks of each item
+        mix_alc += standardCalc(ingredient[2], ingredient[0])
+        total_cost += ingredient[3]
+    print(f"Contains {round(mix_alc, 2)} standards.\n"
+            f"\nA {mix_name} would usually cost ${costForm(total_cost)}.")
+    
+    # ask for a price (display combined sale price of all mixed items)    
+    mix_cost = valueErrorCheck("What is the new cost? ")
 
-
-    # add together the standard drinks of each item
-    # ask for a price (display combined sale price of all mixed items)
     # print new combined item (include ingredients)
-    # confirm save item
-    pass
+    new_mix = Mix(mix_code, mix_name, mix_alc, mix_cost, mix_recipe)
+
+    # add item to bar dictionary
+    print(f"\n{new_mix}")
+    print(f"\nAdd {mix_name} to {bar}'s menu?")
+    approve = confirm()
+    if approve:
+        bar.add_item(new_mix)
+        saveFile(bar)
+    else:
+        print("Add item cancelled.")
 
 
 # Search for an item
 def searchItem(bar):
-    searched_item = bar.search_item(bar)
+    print("\nSEARCHING MENU")
+    searched_item = bar.search_item(
+        bar, "Enter the code or name of the item you are searching for: ")
     if not searched_item:
         return print ("No item in menu with that code or name.")
     print(searched_item)
@@ -115,6 +159,7 @@ def searchItem(bar):
 
 # List items
 def listItem(bar):
+    print("\nVIEWING MENU")
     all_items = bar.get_items()
     if not all_items: 
         return print("No items in bar.")

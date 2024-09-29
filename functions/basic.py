@@ -4,13 +4,12 @@ import random
 
 def mainMenu():
     print("\nWhat would you like to do?\n")
-    print("1. Add stock.")
-    print("2. Create a mix.")
-    print("3. Search for a drink.")
-    print("4. View drink lists.")
-    print("E. Exit application.")
+    print(" 1. Add stock.")
+    print(" 2. Create a mix.")
+    print(" 3. Search for a drink.")
+    print(" 4. View drink lists.")
+    print(" E. Exit application.")
     choice = str.lower(input("\nEnter your choice here: "))
-    print()
     return choice
 
 def exitMessage():
@@ -80,7 +79,7 @@ def confirm():
         else: invalidEntry()
 
 def standardCalc(alcpercent, vol): # unused as of now
-    standard = round(((alcpercent/100 * vol)/(10/0.78)), 2)
+    standard = ((alcpercent/100 * vol)/(10/0.78))
     # 10g is the standard drink in Australia 
     # and the density of alcohol is 0.78g/mL
     return standard

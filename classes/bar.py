@@ -31,11 +31,11 @@ class Bar:
     def add_item(self, new_item):
         self.items.append(new_item)
 
-    def search_item(self, bar):
-        target = str(input(f"Enter the code or name of the item: "))
+    def search_item(self, bar, prompt):
+        target = str(input(prompt))
         # find item code and name
-        if target[0] == "0":
-            target == f"#{target}"
+        if target[:2] == "00":
+            target = "#" + target
         all_items = bar.get_items()
         for item in all_items:
             if target[0] == "#":
