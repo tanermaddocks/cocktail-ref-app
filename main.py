@@ -5,8 +5,8 @@ from functions.file_function import saveFile, loadInfo, loadMenu
 print("Cocktail Reference Application\n")
 
 # Load in database
-barname = fileForm(str(input("Name of your bar: ")))
-bar = loadInfo(barname) #if file does not exist, new bar will be created.
+barname = str(input("Name of your bar: "))
+bar = loadInfo(fileForm(barname)) #if file does not exist, new bar will be created.
 # Password check?
 loadMenu(bar)
 
